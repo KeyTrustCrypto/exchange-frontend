@@ -108,8 +108,6 @@ export function SwapForm({ disableTokenInputs = false, onCurrencyChange }: SwapF
     [prefilledInputCurrencyInfo, prefilledOutputCurrencyInfo],
   )
 
-  const theme = useTheme()
-
   // toggle wallet when disconnected
   const accountDrawer = useAccountDrawer()
 
