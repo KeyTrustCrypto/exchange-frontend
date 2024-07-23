@@ -39,6 +39,7 @@ import { getIsReviewableQuote } from 'pages/Swap'
 import { OutputTaxTooltipBody } from 'pages/Swap/TaxTooltipBody'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ArrowDown } from 'react-feather'
+
 import { useNavigate } from 'react-router-dom'
 import { Text } from 'rebass'
 import { useAppSelector } from 'state/hooks'
@@ -566,9 +567,9 @@ export function SwapForm({ disableTokenInputs = false, onCurrencyChange }: SwapF
                 })
                 maybeLogFirstSwapAction(trace)
               }}
-              color={theme.neutral1}
+              color="#FFFFFF"
             >
-              <ArrowDown size="16" color={theme.neutral1} />
+              <ArrowDown size="20" color="#FFFFFF" />
             </ArrowContainer>
           </Trace>
         </ArrowWrapper>

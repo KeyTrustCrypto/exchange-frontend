@@ -1,16 +1,11 @@
 import { ReactComponent as UniswapLogo } from 'assets/svg/uniswap_app_logo.svg'
-import Column from 'components/Column'
-import Row from 'components/Row'
 import { useEthersWeb3Provider } from 'hooks/useEthersProvider'
 import { useAtom } from 'jotai'
 import { useAtomValue } from 'jotai/utils'
 import { useState } from 'react'
-import { X } from 'react-feather'
-import { Trans } from 'react-i18next'
 import { hideMobileAppPromoBannerAtom } from 'state/application/atoms'
 import styled, { useTheme } from 'styled-components'
 import { BREAKPOINTS } from 'theme'
-import { ThemedText } from 'theme/components'
 import { Z_INDEX } from 'theme/zIndex'
 import { isWebAndroid, isWebIOS } from 'utilities/src/platform'
 import { getWalletMeta } from 'utils/walletMeta'
@@ -99,31 +94,7 @@ export function MobileAppPromoBanner() {
 
   return (
     <Wrapper>
-      <Row gap="sm">
-        <X
-          data-testid="mobile-promo-banner-close-button"
-          size={20}
-          color={theme.neutral2}
-          onClick={() => {
-            setIsVisible(false)
-            setHideMobileAppPromoBanner(true)
-          }}
-        />
-        <UniswapLogo width="32px" height="32px" />
-        <Column>
-          <ThemedText.BodySmall>
-            <Trans i18nKey="mobileAppPromo.banner.title" />
-          </ThemedText.BodySmall>
-          <ThemedText.Caption color="neutral2">
-            <Trans i18nKey="mobileAppPromo.banner.getTheApp.link" />
-          </ThemedText.Caption>
-        </Column>
-      </Row>
-      <StyledButton href={getDownloadLink(navigator.userAgent, peerWalletAgent)}>
-        <ThemedText.LabelSmall color="white" lineHeight="20px">
-          <Trans i18nKey="common.getApp" />
-        </ThemedText.LabelSmall>
-      </StyledButton>
+      <UniswapLogo width="32px" height="32px" />
     </Wrapper>
   )
 }

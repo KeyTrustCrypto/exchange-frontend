@@ -11,7 +11,6 @@ import { useEffect, useLayoutEffect, useRef } from 'react'
 import { Helmet } from 'react-helmet-async/lib/index'
 import { Navigate, useLocation, useSearchParams } from 'react-router-dom'
 import { shouldDisableNFTRoutesAtom } from 'state/application/atoms'
-import DarkModeQueryParamReader from 'theme/components/DarkModeQueryParamReader'
 import Trace from 'uniswap/src/features/telemetry/Trace'
 import { isPathBlocked } from 'utils/blockedPaths'
 import { MICROSITE_LINK } from 'utils/openDownloadApp'
@@ -60,7 +59,6 @@ export default function App() {
   }
   return (
     <ErrorBoundary>
-      <DarkModeQueryParamReader />
       <Trace page={currentPage}>
         {/*
           This is where *static* page titles are injected into the <head> tag. If you

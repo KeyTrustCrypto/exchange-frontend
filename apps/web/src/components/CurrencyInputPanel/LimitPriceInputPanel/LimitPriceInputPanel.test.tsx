@@ -14,7 +14,7 @@ const mockSwapAndLimitContextValue = {
   prefilledState: {},
   setCurrencyState: jest.fn(),
   setSelectedChainId: jest.fn(),
-  currentTab: SwapTab.Limit,
+  currentTab: SwapTab.Buy,
   setCurrentTab: jest.fn(),
   isSwapAndLimitContext: true,
 }
