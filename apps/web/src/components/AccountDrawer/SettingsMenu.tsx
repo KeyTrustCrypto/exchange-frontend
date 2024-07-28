@@ -1,10 +1,6 @@
-import { AnalyticsToggle } from 'components/AccountDrawer/AnalyticsToggle'
 import { GitVersionRow } from 'components/AccountDrawer/GitVersionRow'
 import { LanguageMenuItems } from 'components/AccountDrawer/LanguageMenu'
 import { SlideOutMenu } from 'components/AccountDrawer/SlideOutMenu'
-import { SmallBalanceToggle } from 'components/AccountDrawer/SmallBalanceToggle'
-import { SpamToggle } from 'components/AccountDrawer/SpamToggle'
-import { TestnetsToggle } from 'components/AccountDrawer/TestnetsToggle'
 import Column from 'components/Column'
 import Row from 'components/Row'
 import { LOCALE_LABEL } from 'constants/locales'
@@ -15,7 +11,6 @@ import { ReactNode } from 'react'
 import { ChevronRight } from 'react-feather'
 import styled from 'styled-components'
 import { ClickableStyle, ThemedText } from 'theme/components'
-import ThemeToggle from 'theme/components/ThemeToggle'
 import { FeatureFlags } from 'uniswap/src/features/gating/flags'
 import { useFeatureFlag } from 'uniswap/src/features/gating/hooks'
 
@@ -27,13 +22,6 @@ const Container = styled(Column)`
 const SectionTitle = styled(ThemedText.SubHeader)`
   color: ${({ theme }) => theme.neutral2};
   padding-bottom: 24px;
-`
-
-const ToggleWrapper = styled.div<{ currencyConversionEnabled?: boolean }>`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: ${({ currencyConversionEnabled }) => (currencyConversionEnabled ? '10px' : '24px')};
 `
 
 const SettingsButtonWrapper = styled(Row)`
@@ -86,23 +74,7 @@ export default function SettingsMenu({
     <SlideOutMenu title={<Trans i18nKey="common.settings" />} onClose={onClose}>
       <Container>
         <div>
-          <ToggleWrapper currencyConversionEnabled={currencyConversionEnabled}>
-            <ThemeToggle />
-            <SmallBalanceToggle />
-            <SpamToggle />
-            <AnalyticsToggle />
-            <TestnetsToggle />
-          </ToggleWrapper>
-          {!currencyConversionEnabled && (
-            <>
-              <SectionTitle data-testid="wallet-header">
-                <Trans i18nKey="common.language" />
-              </SectionTitle>
-              <LanguageMenuItems />
-            </>
-          )}
-
-          {currencyConversionEnabled && (
+          {currencyConversionEnabled ? (
             <Column>
               <SettingsButton
                 title={<Trans i18nKey="common.language" />}
@@ -117,6 +89,13 @@ export default function SettingsMenu({
                 testId="local-currency-settings-button"
               />
             </Column>
+          ) : (
+            <>
+              <SectionTitle data-testid="wallet-header">
+                <Trans i18nKey="common.language" />
+              </SectionTitle>
+              <LanguageMenuItems />
+            </>
           )}
         </div>
         <GitVersionRow />

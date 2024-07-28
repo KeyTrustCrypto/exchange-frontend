@@ -6,7 +6,6 @@ import { useActiveLocale } from 'hooks/useActiveLocale'
 import { Trans, t } from 'i18n'
 import { ChevronRight } from 'react-feather'
 import styled, { useTheme } from 'styled-components'
-import { ThemeSelector } from 'theme/components/ThemeToggle'
 import { Text } from 'ui/src'
 
 const Pref = styled.div`
@@ -62,10 +61,6 @@ export function PreferenceSettings({
   const activeLocale = useActiveLocale()
 
   const items: SettingItem[] = [
-    {
-      label: t('themeToggle.theme'),
-      component: <ThemeSelector compact />,
-    },
     {
       label: t('common.language'),
       component: (

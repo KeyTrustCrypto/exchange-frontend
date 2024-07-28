@@ -15,6 +15,8 @@ module.exports = {
     {
       files: ['*.ts', '*.tsx'],
       rules: {
+        '@typescript-eslint/no-unsafe-return': 'off',
+        'eslint-comments/no-unused-disable': 'off',
         'no-relative-import-paths/no-relative-import-paths': [
           'error',
           {

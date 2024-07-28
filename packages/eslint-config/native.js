@@ -306,7 +306,8 @@ module.exports = {
       files: ['*.ts', '*.mts', '*.cts', '*.tsx'],
       excludedFiles: ['migrations.ts', './**/*.test.ts', './**/*.test.tsx', './test/**'],
       rules: {
-        '@typescript-eslint/no-unsafe-return': 'error',
+        '@typescript-eslint/no-unsafe-return': 'off',
+        'eslint-comments/no-unused-disable': 'off',
         '@typescript-eslint/no-non-null-assertion': 'error',
         '@typescript-eslint/explicit-function-return-type': 'warn',
         '@typescript-eslint/no-empty-interface': 'warn',

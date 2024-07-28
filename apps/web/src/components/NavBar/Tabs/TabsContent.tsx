@@ -1,4 +1,3 @@
-import { Limit } from 'components/Icons/Limit'
 import { Send } from 'components/Icons/Send'
 import { SwapV2 } from 'components/Icons/SwapV2'
 import { MenuItem } from 'components/NavBar/CompanyMenu/Content'
@@ -48,20 +47,13 @@ export const useTabsContent = (): TabsSection[] => {
         {
           title: t('common.trade'),
           href: '/swap',
-          isActive: pathname.startsWith('/swap') || pathname.startsWith('/limit') || pathname.startsWith('/send'),
+          isActive: pathname.startsWith('/swap') || pathname.startsWith('/send'),
           items: [
             {
               label: t('common.swap'),
               icon: <SwapV2 fill={theme.neutral2} />,
               quickKey: t`U`,
               href: '/swap',
-              internal: true,
-            },
-            {
-              label: t('swap.limit'),
-              icon: <Limit fill={theme.neutral2} />,
-              quickKey: t`L`,
-              href: '/limit',
               internal: true,
             },
             {
