@@ -4,7 +4,6 @@ import { Banners } from 'components/Banner/shared/Banners'
 import ConnectedAccountBlocked from 'components/ConnectedAccountBlocked'
 import FeatureFlagModal from 'components/FeatureFlagModal/FeatureFlagModal'
 import FiatOnrampModal from 'components/FiatOnrampModal'
-import { GetTheAppModal } from 'components/NavBar/DownloadApp/Modal'
 import { PrivacyPolicyModal } from 'components/PrivacyPolicy'
 import { UkDisclaimerModal } from 'components/TopLevelModals/UkDisclaimerModal'
 import AddressClaimModal from 'components/claim/AddressClaimModal'
@@ -39,7 +38,6 @@ export default function TopLevelModals() {
       <TransactionCompleteModal />
       <FiatOnrampModal />
       <UkDisclaimerModal />
-      <GetTheAppModal />
       <PrivacyPolicyModal />
       <FeatureFlagModal />
       {shouldShowDevFlags && <DevFlagsBox />}

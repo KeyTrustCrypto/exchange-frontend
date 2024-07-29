@@ -2,7 +2,6 @@ import { useAccountDrawer } from 'components/AccountDrawer/MiniPortfolio/hooks'
 import { UniIcon } from 'components/Logo/UniIcon'
 import { Bag } from 'components/NavBar/Bag'
 import { ChainSelector } from 'components/NavBar/ChainSelector'
-import { GetTheAppButton } from 'components/NavBar/DownloadApp/GetTheAppButton'
 import Blur from 'components/NavBar/LEGACY/Blur'
 import { More } from 'components/NavBar/LEGACY/Menu'
 import { SearchBar } from 'components/NavBar/LEGACY/SearchBar/SearchBar'
@@ -79,18 +78,13 @@ export const PageTabs = () => {
         href={'/explore' + (chainName !== Chain.Ethereum ? `/${chainName.toLowerCase()}` : '')}
         isActive={pathname.startsWith('/explore')}
       >
-        <Trans i18nKey="common.explore" />
+        <Trans i18nKey="common.products" />
       </MenuItem>
       {!shouldDisableNFTRoutes && (
         <MenuItem dataTestId="nft-nav" href="/nfts" isActive={isNftPage}>
           <Trans i18nKey="common.nfts" />
         </MenuItem>
       )}
-      <Box display={{ sm: 'flex', lg: 'none', xxl: 'flex' }} width="full">
-        <MenuItem href="/pool" dataTestId="pool-nav-link" isActive={isPoolActive}>
-          <Trans i18nKey="common.pool" />
-        </MenuItem>
-      </Box>
       <More />
     </>
   )
@@ -171,7 +165,6 @@ const LegacyNavbar = ({ blur }: { blur: boolean }) => {
                   <ChainSelector />
                 </Box>
               )}
-              {isLandingPage && <GetTheAppButton />}
               <Web3Status />
             </Row>
           </Box>

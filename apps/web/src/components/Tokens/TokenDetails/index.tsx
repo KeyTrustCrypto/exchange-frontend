@@ -53,7 +53,7 @@ function TDPBreadcrumb() {
   return (
     <BreadcrumbNavContainer aria-label="breadcrumb-nav">
       <BreadcrumbNavLink to={`/explore/${currencyChain.toLowerCase()}`}>
-        <Trans i18nKey="common.explore" /> <ChevronRight size={14} />
+        <Trans i18nKey="common.products" /> <ChevronRight size={14} />
       </BreadcrumbNavLink>
       <BreadcrumbNavLink to={`/explore/tokens/${currencyChain.toLowerCase()}`}>
         <Trans i18nKey="common.tokens" /> <ChevronRight size={14} />

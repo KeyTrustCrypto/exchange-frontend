@@ -1,17 +1,10 @@
-import { NATIVE_CHAIN_ID } from 'constants/tokens'
 import { motion } from 'framer-motion'
-import { getTokenDetailsURL } from 'graphql/data/util'
-import { TokenStandard } from 'pages/Landing/assets/approvedTokens'
 import { Ticker } from 'pages/Landing/components/TokenCloud/Ticker'
 import { randomChoice } from 'pages/Landing/components/TokenCloud/utils'
 import { useMemo } from 'react'
-import { useNavigate } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
-import {
-  useCollectionPromoQuery,
-  useTokenPromoQuery,
-} from 'uniswap/src/data/graphql/uniswap-data-api/__generated__/types-and-hooks'
-import { ProjectPoint, TokenPoint } from '.'
+
+import { ProjectPoint } from '.'
 
 const TokenIconPositioner = styled(motion.div)<{ size: number }>`
   width: ${(props) => `${props.size}px`};
@@ -67,12 +60,12 @@ const TokenIconRing = styled(motion.div)<{
   // standard: TokenStandard
   $borderRadius: number
 }>`
-  border-radius: ${(props) => (`${props.$borderRadius}px`)}};
+  border-radius: ${(props) => `${props.$borderRadius}px`}};
   width: ${(props) => `${props.size}px`};
   height: ${(props) => `${props.size}px`};
   background-color: rgba(0,0,0,0);
   border: 1px solid ${(props) => `${props.color}`};
-  
+
   transform-origin: center center;
   position: absolute;
   pointer-events: all;
@@ -88,7 +81,7 @@ const TokenIcon = styled(motion.div)<{
   $borderRadius: number
   $logoUrl: string
 }>`
-    border-radius: ${(props) => (`${props.$borderRadius}px`)}};
+    border-radius: ${(props) => `${props.$borderRadius}px`}};
     width: ${(props) => `${props.size}px`};
     height: ${(props) => `${props.size}px`};
     background-color:${(props) => `${props.color}`};
@@ -128,7 +121,7 @@ export function Token(props: {
     tickerPosition,
     color,
     url,
-    description
+    description,
     // address,
     // chain,
   } = point
@@ -158,10 +151,7 @@ export function Token(props: {
   //   standard,
   // ])
 
-  const handleOnClick = useMemo(
-    () => () => window.open(url, '_blank'),
-    [url],
-  )
+  const handleOnClick = useMemo(() => () => window.open(url, '_blank'), [url])
 
   const borderRadius = size / 8
 

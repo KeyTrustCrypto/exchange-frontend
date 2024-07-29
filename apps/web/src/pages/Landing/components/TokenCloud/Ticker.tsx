@@ -1,4 +1,3 @@
-import { DeltaArrow } from 'components/Tokens/TokenDetails/Delta'
 import { motion } from 'framer-motion'
 import { TickerPosition } from 'pages/Landing/components/TokenCloud'
 import styled from 'styled-components'
@@ -59,7 +58,7 @@ export function Ticker(props: {
         </TickerText>
         <PricePercentChange>
           {/* <DeltaArrow delta={props.pricePercentChange} /> */}
-          <ThemedText.BodySecondary>{(props.description)}</ThemedText.BodySecondary>
+          <ThemedText.BodySecondary>{props.description}</ThemedText.BodySecondary>
         </PricePercentChange>
       </PriceContainer>
     </TickerContainer>

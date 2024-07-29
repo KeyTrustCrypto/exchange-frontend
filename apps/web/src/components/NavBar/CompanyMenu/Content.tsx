@@ -24,27 +24,15 @@ export const useMenuContent = (): MenuSection[] => {
     title: t('common.app'),
     key: 'App',
     items: [
-      { label: t('common.pool'), href: '/pool', internal: true, overflow: true },
       { label: t('common.vote'), href: 'https://vote.uniswapfoundation.org/' },
       { label: t('common.analytics'), href: '/explore', internal: true },
     ],
   }
-  const companyLinks = {
-    title: t('common.company'),
-    key: 'Company',
-    items: [
-      { label: t('common.careers'), href: 'https://boards.greenhouse.io/uniswaplabs' },
-      { label: t('common.blog'), href: 'https://blog.uniswap.org/' },
-    ],
-  }
+
   const protocolLinks = {
-    title: t('common.protocol'),
+    title: t('common.ecosystem'),
     key: 'Protocol',
-    items: [
-      ...(!isLegacyNav ? [{ label: t('common.vote'), href: 'https://vote.uniswapfoundation.org/' }] : []),
-      { label: t('common.governance'), href: 'https://uniswap.org/governance' },
-      { label: t('common.developers'), href: 'https://uniswap.org/developers' },
-    ],
+    items: [{ label: t('common.developers'), href: 'https://www.google.com/' }],
   }
   const helpLinks = {
     title: t('common.needHelp'),
@@ -55,5 +43,5 @@ export const useMenuContent = (): MenuSection[] => {
     ],
   }
 
-  return [...(isLegacyNav ? [legacyAppLinks] : []), companyLinks, protocolLinks, helpLinks]
+  return [...(isLegacyNav ? [legacyAppLinks] : []), protocolLinks, helpLinks]
 }

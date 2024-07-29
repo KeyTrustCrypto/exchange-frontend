@@ -1,7 +1,6 @@
-import { approvedERC20, approvedERC721, InteractiveProject, InteractiveToken } from 'pages/Landing/assets/approvedTokens'
+import { InteractiveProject, InteractiveToken } from 'pages/Landing/assets/approvedTokens'
 import { Token } from 'pages/Landing/components/TokenCloud/Token'
-import { mixArrays, randomFloat, randomInt } from 'pages/Landing/components/TokenCloud/utils'
-import { XCube } from 'ui/src/components/icons'
+import { randomFloat, randomInt } from 'pages/Landing/components/TokenCloud/utils'
 import PoissonDiskSampling from 'poisson-disk-sampling'
 import { useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
@@ -62,12 +61,12 @@ export function TokenCloud({ transition }: { transition?: boolean }) {
     // console.log('token list', tokenList)
     const projectList: InteractiveProject[] = [
       {
-        "name": "XCube",
-        "symbol": "XCube",
-        "url": "https://xcube.club",
-        "color": "#2775CA",
-        "description": "Best NFT collection ever",
-        "logoUrl": "https://pbs.twimg.com/profile_images/1750420558318329856/bf-LoyZr_400x400.jpg"
+        name: 'XCube',
+        symbol: 'XCube',
+        url: 'https://xcube.club',
+        color: '#2775CA',
+        description: 'Best NFT collection ever',
+        logoUrl: 'https://pbs.twimg.com/profile_images/1750420558318329856/bf-LoyZr_400x400.jpg',
       },
     ]
 
@@ -105,7 +104,7 @@ export function TokenCloud({ transition }: { transition?: boolean }) {
             (x < leftThreshold && x + 100 > leftThreshold) || x + 200 > w ? TickerPosition.LEFT : TickerPosition.RIGHT,
           // standard: token.standard,
           description: project.description,
-          url: project.url
+          url: project.url,
           // address: token.address,
           // chain: token.chain,
         }

@@ -35,7 +35,7 @@ export const useTabsContent = (): TabsSection[] => {
           href: '/swap',
         },
         {
-          title: t('common.explore'),
+          title: t('common.products'),
           href: '/explore',
         },
         {
@@ -66,20 +66,14 @@ export const useTabsContent = (): TabsSection[] => {
           ],
         },
         {
-          title: t('common.explore'),
+          title: t('common.products'),
           href: '/explore',
           isActive: pathname.startsWith('/explore') || pathname.startsWith('/nfts'),
           items: [
-            { label: t('common.tokens'), quickKey: t`T`, href: '/explore/tokens', internal: true },
-            { label: t('common.pools'), quickKey: t`P`, href: '/explore/pools', internal: true },
-            { label: t('common.transactions'), quickKey: t`X`, href: '/explore/transactions', internal: true },
-            { label: t('common.nfts'), quickKey: t`N`, href: '/nfts', internal: true },
+            { label: t('common.virtual_cards'), quickKey: t`T`, href: '/explore/tokens', internal: true },
+            { label: t('common.casino'), quickKey: t`P`, href: '/explore/pools', internal: true },
+            { label: t('common.xcube'), quickKey: t`X`, href: '/explore/transactions', internal: true },
           ],
-        },
-        {
-          title: t('common.pool'),
-          href: '/pool',
-          isActive: pathname.startsWith('/pool'),
         },
         ...(!areTabsVisible
           ? [

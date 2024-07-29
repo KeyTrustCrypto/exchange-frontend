@@ -136,3 +136,14 @@ export function CodeBrackets(props: IconProps) {
     </svg>
   )
 }
+
+export function Telegram(props: IconProps) {
+  return (
+    <svg width={props.size ?? '41'} height={props.size ?? '41'} viewBox="0 0 41 41" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M16.087 22.934l-.678 9.54c.97 0 1.39-.417 1.895-.918l4.549-4.348 9.426 6.904c1.73.963 2.947.456 3.414-1.59L40.88 3.527l.002-.002C41.43.97 39.958-.03 38.273.598L1.903 14.522c-2.482.964-2.445 2.348-.422 2.975l9.299 2.892L32.377 6.874c1.016-.673 1.94-.3 1.18.373l-17.47 15.687z"
+        fill={props.fill}
+      />
+    </svg>
+  )
+}
