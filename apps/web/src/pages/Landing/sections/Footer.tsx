@@ -5,7 +5,6 @@ import { Body1, Box, H3 } from 'pages/Landing/components/Generics'
 import { Telegram, Twitter } from 'pages/Landing/components/Icons'
 import { Wiggle } from 'pages/Landing/components/animations'
 import { Link } from 'react-router-dom'
-import { useTogglePrivacyPolicy } from 'state/application/hooks'
 import styled, { css } from 'styled-components'
 import { ExternalLink } from 'theme/components'
 
@@ -60,14 +59,7 @@ const StyledInternalLink = styled(Link)`
 const StyledExternalLink = styled(ExternalLink)`
   ${MenuItemStyles}
 `
-const DownloadLink = styled.a`
-  ${MenuItemStyles}
-`
-const ModalItem = styled.div`
-  ${MenuItemStyles}
-  cursor: pointer;
-  user-select: none;
-`
+
 export function Socials({ iconSize }: { iconSize?: string }) {
   return (
     <Row gap="24px" maxHeight={iconSize} align="flex-start">
@@ -87,7 +79,6 @@ export function Socials({ iconSize }: { iconSize?: string }) {
 
 export function Footer() {
   const screenIsLarge = useScreenSize()['lg']
-  const togglePrivacyPolicy = useTogglePrivacyPolicy()
 
   return (
     <Box as="footer" direction="column" align="center" padding={screenIsLarge ? '0 40px' : '0 48px'}>

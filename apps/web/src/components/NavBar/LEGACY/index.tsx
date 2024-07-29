@@ -10,9 +10,7 @@ import Web3Status from 'components/Web3Status'
 import { chainIdToBackendChain } from 'constants/chains'
 import { useAccount } from 'hooks/useAccount'
 import { useDisableNFTRoutes } from 'hooks/useDisableNFTRoutes'
-import { useIsLandingPage } from 'hooks/useIsLandingPage'
 import { useIsNftPage } from 'hooks/useIsNftPage'
-import { useIsPoolsPage } from 'hooks/useIsPoolsPage'
 import { useIsSendPage } from 'hooks/useIsSendPage'
 import { useIsSwapPage } from 'hooks/useIsSwapPage'
 import { Trans } from 'i18n'
@@ -64,7 +62,6 @@ export const PageTabs = () => {
   const account = useAccount()
   const chainName = chainIdToBackendChain({ chainId: account.chainId, withFallback: true })
 
-  const isPoolActive = useIsPoolsPage()
   const isNftPage = useIsNftPage()
 
   const shouldDisableNFTRoutes = useDisableNFTRoutes()
@@ -94,7 +91,6 @@ const LegacyNavbar = ({ blur }: { blur: boolean }) => {
   const isNftPage = useIsNftPage()
   const isSwapPage = useIsSwapPage()
   const isSendPage = useIsSendPage()
-  const isLandingPage = useIsLandingPage()
   const sellPageState = useProfilePageState((state) => state.state)
   const navigate = useNavigate()
   const isNavSearchInputVisible = useIsNavSearchInputVisible()

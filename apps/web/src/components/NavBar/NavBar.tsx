@@ -9,7 +9,6 @@ import Row from 'components/Row'
 import Web3Status from 'components/Web3Status'
 import { useScreenSize } from 'hooks/screenSize'
 import { useAccount } from 'hooks/useAccount'
-import { useIsLandingPage } from 'hooks/useIsLandingPage'
 import { useIsNftPage } from 'hooks/useIsNftPage'
 import { useIsSendPage } from 'hooks/useIsSendPage'
 import { useIsSwapPage } from 'hooks/useIsSwapPage'
@@ -67,7 +66,6 @@ const SearchContainer = styled.div`
 
 export const RefreshedNavbar = () => {
   const isNftPage = useIsNftPage()
-  const isLandingPage = useIsLandingPage()
   const isSendPage = useIsSendPage()
   const isSwapPage = useIsSwapPage()
 

@@ -2,7 +2,6 @@ import { motion } from 'framer-motion'
 import { TickerPosition } from 'pages/Landing/components/TokenCloud'
 import styled from 'styled-components'
 import { ThemedText } from 'theme/components'
-import { useFormatter } from 'utils/formatNumbers'
 
 const PriceContainer = styled(motion.div)`
   display: flex;
@@ -39,7 +38,6 @@ export function Ticker(props: {
   children?: React.ReactNode
   animate: string
 }) {
-  const { formatDelta } = useFormatter()
   const priceVariants = {
     rest: { opacity: 0, x: 0 },
     hover: { opacity: 1, x: 8 },
