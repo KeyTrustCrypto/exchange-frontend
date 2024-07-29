@@ -4,6 +4,11 @@ on:
     branches:
       - 'releases/prod'
 
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  
 jobs:
   deploy-to-prod:
     runs-on: ubuntu-latest
