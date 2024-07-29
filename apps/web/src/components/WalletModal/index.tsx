@@ -6,14 +6,12 @@ import Row, { AutoRow } from 'components/Row'
 import ConnectionErrorView from 'components/WalletModal/ConnectionErrorView'
 import { Option } from 'components/WalletModal/Option'
 import PrivacyPolicyNotice from 'components/WalletModal/PrivacyPolicyNotice'
-import { UniswapWalletOptions } from 'components/WalletModal/UniswapWalletOptions'
 import { useOrderedConnections } from 'components/WalletModal/useOrderedConnections'
 import { useUniswapWalletOptions } from 'hooks/useUniswapWalletOptions'
 import { Trans } from 'i18n'
 import styled from 'styled-components'
 import { ThemedText } from 'theme/components'
 import { flexColumnNoWrap } from 'theme/styles'
-import { Text } from 'ui/src'
 
 const Wrapper = styled.div`
   ${flexColumnNoWrap};
@@ -57,18 +55,7 @@ export default function WalletModal({ openSettings }: { openSettings: () => void
         <ThemedText.SubHeader>Connect a wallet</ThemedText.SubHeader>
         <IconButton Icon={Settings} onClick={openSettings} data-testid="wallet-settings" />
       </AutoRow>
-      {showUniswapWalletOptions && (
-        <>
-          <UniswapWalletOptions />
-          <Row align="center" padding="8px 0px">
-            <Line />
-            <Text variant="body3" color="$neutral2" mx={18} whiteSpace="nowrap">
-              <Trans i18nKey="wallet.other" />
-            </Text>
-            <Line />
-          </Row>
-        </>
-      )}
+
       <Column gap="md" flex="1">
         <Row flex="1" align="flex-start">
           <OptionGrid data-testid="option-grid">

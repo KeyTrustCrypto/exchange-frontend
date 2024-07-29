@@ -243,7 +243,7 @@ const sporeDark = {
   sporeWhite: '#FFFFFF',
   sporeBlack: '#000000',
 
-  surface1: '#131313',
+  surface1: '#070312',
   surface1Hovered: '#181818',
   surface2: '#1B1B1B',
   surface2Hovered: '#242424',
@@ -257,14 +257,14 @@ const sporeDark = {
   neutral2: '#9B9B9B',
   neutral3: '#5E5E5E',
 
-  accent1: '#FC72FF',
-  accent1Hovered: '#FD3CFE',
-  accent2: '#311C31',
-  accent2Hovered: '#510D43',
+  accent1: '#6C26DE',
+  accent1Hovered: '#6C26DE',
+  accent2: '#6C26DE',
+  accent2Hovered: '#6C26DE',
 
   accentSoft: '#FC72FF33', //33 = 20%
 
-  statusActive: '#236EFF',
+  statusActive: '#6C26DE',
   statusSuccess: '#40B66B',
   statusSuccess2: '#0F2C1A',
   statusCritical: '#FF5F52',

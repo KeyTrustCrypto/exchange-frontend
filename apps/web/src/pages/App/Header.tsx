@@ -42,7 +42,7 @@ export const Header = memo(function Header() {
   const isLegacyNav = !useFeatureFlag(FeatureFlags.NavRefresh)
 
   return (
-    <AppHeader id="AppHeader">
+    <AppHeader>
       <Banners>
         {extensionEligible && <MobileAppPromoBanner />}
         {renderUkBanner && <UkBanner />}

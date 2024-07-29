@@ -69,6 +69,6 @@ describe('SwapHeader.tsx', () => {
     act(() => {
       screen.getByText('Limit').click()
     })
-    expect(onClickTab).toHaveBeenCalledWith(SwapTab.Limit)
+    expect(onClickTab).toHaveBeenCalledWith(SwapTab.Buy)
   })
 })

@@ -31,7 +31,6 @@ const HeaderButtonContainer = styled(RowFixed)<{ compact: boolean }>`
 const PathnameToTab: { [key: string]: SwapTab } = {
   '/swap': SwapTab.Swap,
   '/send': SwapTab.Send,
-  '/limit': SwapTab.Limit,
   '/buy': SwapTab.Buy,
 }
 
@@ -82,14 +81,7 @@ export default function SwapHeader({ compact, syncTabToUrl }: { compact: boolean
         >
           <Trans i18nKey="common.swap" />
         </SwapHeaderTabButton>
-        <SwapHeaderTabButton
-          $isActive={currentTab === SwapTab.Limit}
-          onClick={() => {
-            onTabClick(SwapTab.Limit)
-          }}
-        >
-          <Trans i18nKey="swap.limit" />
-        </SwapHeaderTabButton>
+
         {!isIFramed() && (
           <SwapHeaderTabButton
             $isActive={currentTab === SwapTab.Send}

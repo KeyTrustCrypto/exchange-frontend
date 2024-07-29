@@ -12,7 +12,6 @@ import { chainIdToBackendChain } from 'constants/chains'
 import { useAccount } from 'hooks/useAccount'
 import { useDisableNFTRoutes } from 'hooks/useDisableNFTRoutes'
 import { useIsLandingPage } from 'hooks/useIsLandingPage'
-import { useIsLimitPage } from 'hooks/useIsLimitPage'
 import { useIsNftPage } from 'hooks/useIsNftPage'
 import { useIsPoolsPage } from 'hooks/useIsPoolsPage'
 import { useIsSendPage } from 'hooks/useIsSendPage'
@@ -101,7 +100,6 @@ const LegacyNavbar = ({ blur }: { blur: boolean }) => {
   const isNftPage = useIsNftPage()
   const isSwapPage = useIsSwapPage()
   const isSendPage = useIsSendPage()
-  const isLimitPage = useIsLimitPage()
   const isLandingPage = useIsLandingPage()
   const sellPageState = useProfilePageState((state) => state.state)
   const navigate = useNavigate()
@@ -111,7 +109,7 @@ const LegacyNavbar = ({ blur }: { blur: boolean }) => {
   const account = useAccount()
   const accountDrawer = useAccountDrawer()
 
-  const hideChainSelector = multichainUXEnabled ? isSendPage || isSwapPage || isLimitPage || isNftPage : isNftPage
+  const hideChainSelector = multichainUXEnabled ? isSendPage || isSwapPage || isNftPage : isNftPage
 
   const handleUniIconClick = useCallback(() => {
     if (account.isConnected) {

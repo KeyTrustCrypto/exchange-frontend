@@ -17,6 +17,15 @@ export interface InteractiveToken {
   logoUrl: string
 }
 
+export interface InteractiveProject {
+  name: string
+  symbol: string
+  url: string
+  color: string
+  logoUrl: string
+  description: string
+}
+
 export const approvedERC20: InteractiveToken[] = [
   {
     name: 'Ethereum',

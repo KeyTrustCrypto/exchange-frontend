@@ -8,7 +8,6 @@ import { useSupportedChainId } from 'constants/chains'
 import { useScreenSize } from 'hooks/screenSize'
 import { useAccount } from 'hooks/useAccount'
 import { BuyForm } from 'pages/Swap/Buy/BuyForm'
-import { LimitFormWrapper } from 'pages/Swap/Limit/LimitForm'
 import { SendForm } from 'pages/Swap/Send/SendForm'
 import { SwapForm } from 'pages/Swap/SwapForm'
 import { ReactNode } from 'react'
@@ -18,7 +17,7 @@ import { isPreviewTrade } from 'state/routing/utils'
 import { SwapAndLimitContextProvider, SwapContextProvider } from 'state/swap/SwapContext'
 import { useInitialCurrencyState } from 'state/swap/hooks'
 import { CurrencyState, SwapAndLimitContext } from 'state/swap/types'
-import { useIsDarkMode } from 'theme/components/ThemeToggle'
+
 import { Flex } from 'ui/src'
 import { FeatureFlags } from 'uniswap/src/features/gating/flags'
 import { useFeatureFlag } from 'uniswap/src/features/gating/hooks'
@@ -96,7 +95,6 @@ export function Swap({
   syncTabToUrl: boolean
   multichainUXEnabled?: boolean
 }) {
-  const isDark = useIsDarkMode()
   const screenSize = useScreenSize()
   const { isConnected } = useAccount()
   const forAggregatorEnabled = useFeatureFlag(FeatureFlags.ForAggregatorWeb)
@@ -113,12 +111,11 @@ export function Swap({
         {({ currentTab }) => (
           <SwapContextProvider multichainUXEnabled={multichainUXEnabled}>
             <Flex width="100%">
-              <SwapWrapper isDark={isDark} className={className} id="swap-page">
+              <SwapWrapper className={className} id="swap-page">
                 <SwapHeader compact={compact || !screenSize.sm} syncTabToUrl={syncTabToUrl} />
                 {currentTab === SwapTab.Swap && (
                   <SwapForm onCurrencyChange={onCurrencyChange} disableTokenInputs={disableTokenInputs} />
                 )}
-                {currentTab === SwapTab.Limit && <LimitFormWrapper onCurrencyChange={onCurrencyChange} />}
                 {currentTab === SwapTab.Send && (
                   <SendForm disableTokenInputs={disableTokenInputs} onCurrencyChange={onCurrencyChange} />
                 )}

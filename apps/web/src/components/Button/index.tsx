@@ -30,15 +30,16 @@ type BaseButtonProps = {
 } & ButtonProps
 
 export const BaseButton = styled(RebassButton)<BaseButtonProps>`
+  font-family: Montserrat;
   padding: ${({ padding }) => padding ?? '16px'};
   width: ${({ width }) => width ?? '100%'};
   line-height: 24px;
-  font-weight: 535;
+  font-weight: 700;
   text-align: center;
   border-radius: ${({ $borderRadius }) => $borderRadius ?? '16px'};
   outline: none;
   border: 1px solid transparent;
-  color: ${({ theme }) => theme.neutral1};
+  background-color: #6c26de;
   text-decoration: none;
   display: flex;
   justify-content: center;
@@ -71,11 +72,9 @@ export const ButtonPrimary = styled(BaseButton)`
   font-size: 20px;
   font-weight: 535;
   padding: 16px;
-  color: ${({ theme }) => theme.neutralContrast};
-  &:focus {
-    box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.05, theme.accent1)};
-    background-color: ${({ theme }) => darken(0.05, theme.accent1)};
-  }
+  color: #ffffff;
+  background-color: #6c26de;
+
   &:hover {
     background-color: ${({ theme }) => darken(0.05, theme.accent1)};
   }
@@ -250,7 +249,7 @@ export const ButtonText = styled(BaseButton)`
 `
 
 const ButtonConfirmedStyle = styled(BaseButton)`
-  background-color: ${({ theme }) => theme.surface2};
+  background-color: #6c26de;
   color: ${({ theme }) => theme.neutral1};
   /* border: 1px solid ${({ theme }) => theme.success}; */
 

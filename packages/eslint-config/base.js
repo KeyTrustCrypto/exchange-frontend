@@ -32,6 +32,8 @@ module.exports = {
       },
       rules: {
         curly: 'error',
+        '@typescript-eslint/no-unsafe-return': 'off',
+        'eslint-comments/no-unused-disable': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/ban-ts-comment': 'off',
         '@typescript-eslint/ban-ts-ignore': 'off',

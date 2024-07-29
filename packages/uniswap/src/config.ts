@@ -8,7 +8,6 @@ import {
   MOONPAY_API_KEY,
   MOONPAY_API_URL,
   MOONPAY_WIDGET_API_URL,
-  ONESIGNAL_APP_ID,
   QUICKNODE_ARBITRUM_RPC_URL,
   QUICKNODE_BNB_RPC_URL,
   QUICKNODE_MAINNET_RPC_URL,
@@ -33,7 +32,6 @@ export interface Config {
   uniswapApiKey: string
   infuraKey: string
   infuraProjectId: string
-  onesignalAppId: string
   sentryDsn: string
   simpleHashApiKey: string
   simpleHashApiUrl: string
@@ -67,7 +65,6 @@ const _config: Config = {
   uniswapApiKey: process.env.UNISWAP_API_KEY || UNISWAP_API_KEY,
   infuraKey: process.env.REACT_APP_INFURA_KEY || INFURA_KEY,
   infuraProjectId: process.env.INFURA_PROJECT_ID || INFURA_PROJECT_ID,
-  onesignalAppId: process.env.ONESIGNAL_APP_ID || ONESIGNAL_APP_ID,
   sentryDsn: process.env.REACT_APP_SENTRY_DSN || process.env.SENTRY_DSN || SENTRY_DSN,
   simpleHashApiKey: process.env.SIMPLEHASH_API_KEY || SIMPLEHASH_API_KEY,
   simpleHashApiUrl: process.env.SIMPLEHASH_API_URL || SIMPLEHASH_API_URL,

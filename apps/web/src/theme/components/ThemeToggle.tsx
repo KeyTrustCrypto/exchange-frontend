@@ -35,22 +35,17 @@ const CompactOptionPill = styled.div`
 `
 
 // Tracks the device theme
-const systemThemeAtom = atom<ThemeMode.LIGHT | ThemeMode.DARK>(
-  DARKMODE_MEDIA_QUERY.matches ? ThemeMode.DARK : ThemeMode.LIGHT,
-)
+const systemThemeAtom = atom<ThemeMode.LIGHT | ThemeMode.DARK>(ThemeMode.DARK)
 
 // Tracks the user's selected theme mode
-const themeModeAtom = atomWithStorage<ThemeMode>('interface_color_theme', ThemeMode.AUTO)
+const themeModeAtom = atomWithStorage<ThemeMode>('interface_color_theme', ThemeMode.DARK)
 
 export function SystemThemeUpdater() {
   const setSystemTheme = useUpdateAtom(systemThemeAtom)
 
-  const listener = useCallback(
-    (event: MediaQueryListEvent) => {
-      setSystemTheme(event.matches ? ThemeMode.DARK : ThemeMode.LIGHT)
-    },
-    [setSystemTheme],
-  )
+  const listener = useCallback(() => {
+    setSystemTheme(ThemeMode.DARK)
+  }, [setSystemTheme])
 
   useEffect(() => {
     addMediaQueryListener(DARKMODE_MEDIA_QUERY, listener)
@@ -82,13 +77,16 @@ export function ThemeColorMetaUpdater() {
 
 export function useIsDarkMode(): boolean {
   const mode = useAtomValue(themeModeAtom)
-  const systemTheme = useAtomValue(systemThemeAtom)
-
-  return (mode === ThemeMode.AUTO ? systemTheme : mode) === ThemeMode.DARK
+  const setMode = useUpdateAtom(themeModeAtom)
+  if (mode !== ThemeMode.DARK) {
+    setMode(ThemeMode.DARK)
+  }
+  return mode === ThemeMode.DARK
 }
 
 export function useDarkModeManager(): [boolean, (mode: ThemeMode) => void] {
   const isDarkMode = useIsDarkMode()
+
   const setMode = useUpdateAtom(themeModeAtom)
 
   return useMemo(() => {

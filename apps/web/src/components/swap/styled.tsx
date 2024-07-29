@@ -21,7 +21,7 @@ export const PageWrapper = styled.div`
 `
 
 // Mostly copied from `AppBody` but it was getting too hard to maintain backwards compatibility.
-export const SwapWrapperOuter = styled.main<{ isDark?: boolean }>`
+export const SwapWrapperOuter = styled.main`
   position: relative;
   z-index: ${Z_INDEX.default};
   transition: transform 250ms ease;
@@ -50,17 +50,16 @@ export const ArrowWrapper = styled.div<{ clickable: boolean }>`
   margin-bottom: -18px;
   margin-left: auto;
   margin-right: auto;
-  background-color: ${({ theme }) => theme.surface2};
+  background-color: #13101e;
   border: 4px solid;
-  border-color: ${({ theme }) => theme.surface1};
+  border-color: #070312;
 
-  z-index: 2;
+  z-index: 10;
   ${({ clickable }) =>
     clickable
       ? css`
           :hover {
             cursor: pointer;
-            opacity: 0.8;
           }
         `
       : null}
@@ -136,7 +135,7 @@ export const SwapShowAcceptChanges = styled(AutoColumn)`
 `
 
 export const SwapSection = styled.div`
-  background-color: ${({ theme }) => theme.surface2};
+  background-color: #13101e;
   border-radius: 16px;
   color: ${({ theme }) => theme.neutral2};
   font-size: 14px;
@@ -156,13 +155,6 @@ export const SwapSection = styled.div`
     height: 100%;
     pointer-events: none;
     content: '';
-    border: 1px solid ${({ theme }) => theme.surface2};
-  }
-  &:hover:before {
-    border-color: ${({ theme }) => theme.deprecated_stateOverlayHover};
-  }
-  &:focus-within:before {
-    border-color: ${({ theme }) => theme.deprecated_stateOverlayPressed};
   }
 `
 
@@ -179,12 +171,13 @@ export const ArrowContainer = styled.div`
 `
 
 export const SwapHeaderTabButton = styled(ButtonText)<{ $isActive: boolean }>`
-  color: ${({ theme, $isActive }) => ($isActive ? theme.neutral1 : theme.neutral2)};
-  background-color: ${({ theme, $isActive }) => $isActive && theme.surface3};
+  font-family: Montserrat;
+  color: #ffffff;
+  background-color: ${({ $isActive }) => $isActive && '#6C26DE'};
   padding: 8px 16px;
   border-radius: 20px;
   gap: 4px;
-  font-weight: 485;
+  font-weight: ${({ $isActive }) => ($isActive ? '700' : '500')};
   &:focus {
     text-decoration: none;
   }
