@@ -1,6 +1,7 @@
-import { approvedERC20, approvedERC721, InteractiveToken } from 'pages/Landing/assets/approvedTokens'
+import { approvedERC20, approvedERC721, InteractiveProject, InteractiveToken } from 'pages/Landing/assets/approvedTokens'
 import { Token } from 'pages/Landing/components/TokenCloud/Token'
 import { mixArrays, randomFloat, randomInt } from 'pages/Landing/components/TokenCloud/utils'
+import { XCube } from 'ui/src/components/icons'
 import PoissonDiskSampling from 'poisson-disk-sampling'
 import { useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
@@ -39,10 +40,36 @@ export type TokenPoint = InteractiveToken & {
   ticker: string
   tickerPosition: TickerPosition
 }
+export type ProjectPoint = InteractiveProject & {
+  x: number
+  y: number
+  blur: number
+  size: number
+  color: string
+  logoUrl: string
+  opacity: number
+  rotation: number
+  delay: number
+  floatDuration: number
+  description: string
+  ticker: string
+  tickerPosition: TickerPosition
+}
 
 export function TokenCloud({ transition }: { transition?: boolean }) {
   const pts = useMemo(() => {
-    const tokenList: InteractiveToken[] = mixArrays(approvedERC20, approvedERC721, 0.33)
+    // const tokenList: InteractiveToken[] = mixArrays(approvedERC20, approvedERC721, 0.33)
+    // console.log('token list', tokenList)
+    const projectList: InteractiveProject[] = [
+      {
+        "name": "XCube",
+        "symbol": "XCube",
+        "url": "https://xcube.club",
+        "color": "#2775CA",
+        "description": "Best NFT collection ever",
+        "logoUrl": "https://pbs.twimg.com/profile_images/1750420558318329856/bf-LoyZr_400x400.jpg"
+      },
+    ]
 
     const w = window.innerWidth
     const h = window.innerHeight - 72
@@ -60,25 +87,27 @@ export function TokenCloud({ transition }: { transition?: boolean }) {
       // Order by distance from center, ie idx = 0 is closest to center
       .sort((a, b) => Math.abs(a[0] - w / 2) - Math.abs(b[0] - w / 2))
       .map(([x, y], idx: number) => {
-        const token: InteractiveToken = tokenList[idx % tokenList.length]
+        const project: InteractiveProject = projectList[idx % projectList.length]
         const size = randomInt(50, 96)
         return {
           x,
           y,
           blur: (1 / size) * 500 * ((x > leftThreshold && x < rightThreshold) || y < 100 ? 5 : 1), // make blur bigger for smaller icons
           size,
-          color: token.color,
-          logoUrl: token.logoUrl,
+          color: project.color,
+          logoUrl: project.logoUrl,
           opacity: randomFloat(0.5, 1.0) * ((x > leftThreshold && x < rightThreshold) || y < 100 ? 0.75 : 1),
           rotation: randomInt(-20, 20),
           delay: Math.abs(x - w / 2) / 800,
           floatDuration: randomFloat(3, 6),
-          ticker: token.symbol,
+          ticker: project.symbol,
           tickerPosition:
             (x < leftThreshold && x + 100 > leftThreshold) || x + 200 > w ? TickerPosition.LEFT : TickerPosition.RIGHT,
-          standard: token.standard,
-          address: token.address,
-          chain: token.chain,
+          // standard: token.standard,
+          description: project.description,
+          url: project.url
+          // address: token.address,
+          // chain: token.chain,
         }
       })
       .map((p) => {
@@ -89,7 +118,7 @@ export function TokenCloud({ transition }: { transition?: boolean }) {
         }
       })
 
-    return points as TokenPoint[]
+    return points as ProjectPoint[]
   }, [])
 
   const constraintsRef = useRef(null)
@@ -98,7 +127,7 @@ export function TokenCloud({ transition }: { transition?: boolean }) {
   return (
     <Container ref={constraintsRef}>
       <Inner>
-        {pts.map((point: TokenPoint, idx) => {
+        {pts.map((point: ProjectPoint, idx) => {
           return (
             <Token
               key={`token-${idx}`}

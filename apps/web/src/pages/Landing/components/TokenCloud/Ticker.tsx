@@ -32,7 +32,8 @@ const PricePercentChange = styled(motion.div)`
 `
 export function Ticker(props: {
   color: string
-  pricePercentChange: number
+  // pricePercentChange: number
+  description: string
   ticker: string
   tickerPosition: TickerPosition
   size: number
@@ -57,8 +58,8 @@ export function Ticker(props: {
           {props.ticker}
         </TickerText>
         <PricePercentChange>
-          <DeltaArrow delta={props.pricePercentChange} />
-          <ThemedText.BodySecondary>{formatDelta(props.pricePercentChange)}</ThemedText.BodySecondary>
+          {/* <DeltaArrow delta={props.pricePercentChange} /> */}
+          <ThemedText.BodySecondary>{(props.description)}</ThemedText.BodySecondary>
         </PricePercentChange>
       </PriceContainer>
     </TickerContainer>
