@@ -1,7 +1,6 @@
 import { Send } from 'components/Icons/Send'
 import { SwapV2 } from 'components/Icons/SwapV2'
 import { MenuItem } from 'components/NavBar/CompanyMenu/Content'
-import { useTabsVisible } from 'components/NavBar/ScreenSizes'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import { useTheme } from 'styled-components'
@@ -12,6 +11,7 @@ export type TabsSection = {
   title: string
   href: string
   isActive?: boolean
+  internal?: boolean
   items?: TabsItem[]
   closeMenu?: () => void
 }
@@ -26,7 +26,6 @@ export const useTabsContent = (): TabsSection[] => {
   const isLegacyNav = !useFeatureFlag(FeatureFlags.NavRefresh)
   const { pathname } = useLocation()
   const theme = useTheme()
-  const areTabsVisible = useTabsVisible()
 
   return isLegacyNav
     ? [
@@ -37,10 +36,6 @@ export const useTabsContent = (): TabsSection[] => {
         {
           title: t('common.products'),
           href: '/explore',
-        },
-        {
-          title: t('common.nfts'),
-          href: '/nfts',
         },
       ]
     : [
@@ -67,21 +62,14 @@ export const useTabsContent = (): TabsSection[] => {
         },
         {
           title: t('common.products'),
-          href: '/explore',
+          href: 'https://www.google.com/',
           isActive: pathname.startsWith('/explore') || pathname.startsWith('/nfts'),
+          internal: false,
           items: [
-            { label: t('common.virtual_cards'), quickKey: t`T`, href: '/explore/tokens', internal: true },
-            { label: t('common.casino'), quickKey: t`P`, href: '/explore/pools', internal: true },
-            { label: t('common.xcube'), quickKey: t`X`, href: '/explore/transactions', internal: true },
+            { label: t('common.virtual_cards'), quickKey: t`T`, href: 'https://www.google.com/', internal: false },
+            { label: t('common.casino'), quickKey: t`P`, href: 'https://www.google.com/', internal: false },
+            { label: t('common.xcube'), quickKey: t`X`, href: 'https://www.google.com/', internal: false },
           ],
         },
-        ...(!areTabsVisible
-          ? [
-              {
-                title: t('common.nfts'),
-                href: '/nfts',
-              },
-            ]
-          : []),
       ]
 }

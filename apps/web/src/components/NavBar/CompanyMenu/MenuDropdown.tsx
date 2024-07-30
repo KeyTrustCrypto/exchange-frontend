@@ -75,7 +75,7 @@ export function MenuDropdown({ close }: { close?: () => void }) {
       return {
         label: t.title,
         href: t.href,
-        internal: true,
+        internal: t.internal,
         overflow: false,
       }
     })

@@ -2,9 +2,9 @@ import { motion } from 'framer-motion'
 import { t, Trans } from 'i18n'
 import { PillButton } from 'pages/Landing/components/cards/PillButton'
 import { Box, H2, H3 } from 'pages/Landing/components/Generics'
-import { BookOpen, ChatBubbles, HelpCircle } from 'pages/Landing/components/Icons'
-import styled, { useTheme } from 'styled-components'
-import { useIsDarkMode } from 'theme/components/ThemeToggle'
+import { Token } from 'pages/Landing/components/Icons'
+import styled, { css, useTheme } from 'styled-components'
+import { opacify } from 'theme/utils'
 
 const SectionLayout = styled.div`
   width: 100%;
@@ -24,10 +24,8 @@ const Layout = styled.div`
   width: 100%;
   max-width: 1280px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  grid-column-gap: 16px;
-  grid-row-gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
   @media (max-width: 768px) {
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: repeat(2, 1fr);
@@ -41,9 +39,8 @@ const SectionCol = styled(Box)`
     gap: 24px;
   }
 `
-const Card = styled.a<{
-  backgroundColor?: string
-}>`
+
+const CardStyles = css<{ backgroundColor?: string }>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -64,108 +61,78 @@ const Card = styled.a<{
     padding: 24px;
   }
 `
-const SquareCard = motion(styled(Card)`
-  grid-column: span 1 / span 1;
-  grid-row: span 4 / span 4;
 
-  @media (max-width: 768px) {
-    grid-column: span 4 / span 4;
-    grid-row: span 1 / span 1;
-  }
-`)
-const HelpCenterCard = styled(SquareCard)`
-  @media (max-width: 1024px) {
-    grid-column: span 2 / span 2;
-
-    grid-row-start: 1;
-    grid-row-end: 3;
-  }
-  @media (max-width: 768px) {
-    grid-column: span 4 / span 4;
-    grid-row: span 1 / span 1;
-  }
+const LinkCard = styled.a<{
+  backgroundColor?: string
+}>`
+  ${CardStyles}
 `
-const BlogCard = styled(SquareCard)`
-  @media (max-width: 1024px) {
-    grid-column: span 2 / span 2;
-
-    grid-row-start: 3;
-    grid-row-end: 5;
-  }
-  @media (max-width: 768px) {
-    grid-column: span 4 / span 4;
-    grid-row: span 1 / span 1;
-  }
+const Card = styled.div<{
+  backgroundColor?: string
+}>`
+  ${CardStyles}
 `
-const RectCard = motion(styled(Card)`
-  grid-column: span 2 / span 2;
-  grid-row: span 4 / span 4;
+const SquareLinkCard = motion(styled(LinkCard)``)
+const SquareCard = motion(styled(Card)``)
+const Title = styled(H2)`
+  width: 100%;
+  text-align: center;
+`
 
-  gap: 32px;
-
-  @media (max-width: 768px) {
-    grid-column: span 4 / span 4;
-    grid-row: span 1 / span 1;
-  }
-`)
-
-const helpPrimary = '#FF4D00'
-const blogPrimary = '#8E8767'
+const Link = styled.a`
+  text-decoration: none;
+  color: inherit;
+`
 
 export function NewsletterEtc() {
   const theme = useTheme()
-  const isDarkMode = useIsDarkMode()
+
   return (
     <SectionLayout>
       <Box direction="row" maxWidth="1328px" gap="24px" width="100%">
         <SectionCol justify-content="space-between" height="100%">
-          <H2>
+          <Title>
             <Trans i18nKey="landing.connectWithUs" />
-          </H2>
+          </Title>
           <Layout>
-            <HelpCenterCard
+            <SquareLinkCard
               initial="initial"
               whileHover="hover"
-              href="https://help.uniswap.org/"
+              href="https://www.google.com/"
               target="_blank"
               rel="noopener noreferrer"
-              backgroundColor={isDarkMode ? 'rgba(255, 77, 0, 0.08)' : 'rgba(255, 77, 0, 0.04)'}
+              backgroundColor={opacify(5, theme.white)}
             >
-              <PillButton icon={<HelpCircle fill={helpPrimary} />} color={helpPrimary} label={t('common.helpCenter')} />
-              <H3 color={helpPrimary}>
+              <PillButton icon={<Token />} label={t('common.helpCenter')} />
+              <H3>
                 <Trans i18nKey="common.getSupport.button" />
               </H3>
-            </HelpCenterCard>
-            <BlogCard
+            </SquareLinkCard>
+            <SquareLinkCard
               initial="initial"
               whileHover="hover"
-              href="https://blog.uniswap.org/"
+              href="https://www.google.com/"
               target="_blank"
               rel="noopener noreferrer"
-              backgroundColor={isDarkMode ? 'rgba(98, 84, 50, 0.16)' : 'rgba(98, 84, 50, 0.04)'}
+              backgroundColor={opacify(5, theme.white)}
             >
-              <PillButton icon={<BookOpen fill={blogPrimary} />} color={blogPrimary} label={t('common.blog')} />
-              <H3 color={blogPrimary}>
+              <PillButton icon={<Token />} label={t('common.blog')} />
+              <H3>
                 <Trans i18nKey="landing.teamInsights" />
               </H3>
-            </BlogCard>
-            <RectCard
-              backgroundColor={theme.accent2}
-              initial="initial"
-              whileHover="hover"
-              href="https://twitter.com/Uniswap/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <PillButton
-                icon={<ChatBubbles fill={theme.accent1} />}
-                color={theme.accent1}
-                label={t('common.stayConnected')}
-              />
-              <H3 color={theme.accent1}>
-                <Trans i18nKey="landing.followOnX" />
+            </SquareLinkCard>
+            <SquareCard backgroundColor={opacify(5, theme.white)} initial="initial" whileHover="hover">
+              <PillButton icon={<Token />} label={t('common.followUs')} />
+              <H3>
+                <Link href="https://t.me" target="_blank">
+                  Telegram
+                </Link>{' '}
+                and{' '}
+                <Link href="https://x.com/home" target="_blank">
+                  X.com
+                </Link>
               </H3>
-            </RectCard>
+            </SquareCard>
           </Layout>
         </SectionCol>
       </Box>

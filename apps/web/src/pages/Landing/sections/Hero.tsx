@@ -1,47 +1,31 @@
-import { ColumnCenter } from 'components/Column'
-import { useCurrency } from 'hooks/Tokens'
+import mainPageLines from 'assets/images/mainPageLines.png'
 import { useScroll } from 'hooks/useScroll'
-import { Trans } from 'i18n'
-import { Box, H1 } from 'pages/Landing/components/Generics'
+import { Box, H2 } from 'pages/Landing/components/Generics'
+import { LogoBig } from 'pages/Landing/components/Icons'
 import { TokenCloud } from 'pages/Landing/components/TokenCloud/index'
-import { Hover, RiseIn, RiseInText } from 'pages/Landing/components/animations'
-import { Swap } from 'pages/Swap'
-import { ChevronDown } from 'react-feather'
 import { useTranslation } from 'react-i18next'
 import styled, { css, keyframes } from 'styled-components'
-import { BREAKPOINTS } from 'theme'
-import { Text } from 'ui/src'
-import { heightBreakpoints } from 'ui/src/theme'
-import { UniverseChainId } from 'uniswap/src/types/chains'
 
 const Container = styled(Box)`
   min-width: 100%;
   padding-top: ${({ theme }) => theme.navHeight}px;
+  background-size: cover;
+  background-position: center;
+  background-image: url(${mainPageLines}), ${({ theme }) => theme.brandedGradient};
+  border-radius: 0 0 24px 24px;
+  align-items: center;
 `
-const LandingSwapContainer = styled(Box)`
-  width: 480px;
-  padding: 8px;
-  border-radius: 24px;
-  background: ${({ theme }) => theme.surface1};
-`
-const LandingSwap = styled(Swap)`
-  position: relative;
-  width: 100%;
 
-  & > div:first-child {
-    padding: 0px;
+const Title = styled(H2)`
+  text-align: center;
+  line-height: 30px;
+  font-weight: 700;
+
+  * {
+    font-family: Montserrat, sans-serif;
+    font-weight: 700;
   }
-  & > div:first-child > div:first-child {
-    display: none;
-  }
-`
-const StyledH1 = styled(H1)`
-  @media (max-width: 768px) {
-    font-size: 52px;
-  }
-  @media (max-width: 464px) {
-    font-size: 36px;
-  }
+
   @media (max-height: 668px) {
     font-size: 28px;
   }
@@ -59,14 +43,9 @@ const shrinkAndFade = keyframes`
 const Center = styled(Box)<{ transition?: boolean }>`
   width: unset;
   pointer-events: none;
-  padding: 48px 0px;
-  @media (max-width: 464px), (max-height: 700px) {
-    padding-top: 24px;
-  }
-  @media (max-width: 464px), (max-height: 668px) {
-    padding-top: 8px;
-  }
+  align-items: center;
   gap: 24px;
+
   @media (max-height: 800px) {
     gap: 16px;
   }
@@ -76,26 +55,56 @@ const Center = styled(Box)<{ transition?: boolean }>`
       animation: ${shrinkAndFade} 1s ease-in-out forwards;
     `};
 `
-const LearnMoreContainer = styled(Box)`
-  bottom: 48px;
-  @media (max-width: ${BREAKPOINTS.md}px) {
-    bottom: 64px;
-  }
 
-  // Prevent overlap of Hero text and Learn More button on short screens
-  @media (max-height: ${heightBreakpoints.short + 30}px) {
-    display: none;
-  }
+const ButtonsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  max-width: 300px;
+  flex-direction: column;
+  gap: 16px;
+`
+
+const ExchangeButton = styled.button`
+  width: 100%;
+  height: 50px;
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-family: Montserrat, sans-serif;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-weight: 800;
+  background: ${({ theme }) => theme.accent1};
+  color: ${({ theme }) => theme.white};
+  cursor: pointer;
+`
+const TelegramButton = styled.a`
+  all: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 50px;
+  padding: 10px 20px 10px 20px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  text-transform: uppercase;
+  border: 1px solid ${({ theme }) => theme.white};
+  background: transparent;
+  font-size: 16px;
+  font-weight: 800;
+  font-family: Montserrat, sans-serif;
+  cursor: pointer;
 `
 
 interface HeroProps {
-  scrollToRef: () => void
   transition?: boolean
 }
 
-export function Hero({ scrollToRef, transition }: HeroProps) {
+export function Hero({ transition }: HeroProps) {
   const { height: scrollPosition } = useScroll()
-  const initialInputCurrency = useCurrency('ETH')
   const { t } = useTranslation()
 
   const translateY = -scrollPosition / 7
@@ -112,82 +121,21 @@ export function Hero({ scrollToRef, transition }: HeroProps) {
       <Center
         direction="column"
         align="center"
-        maxWidth="85vw"
         transition={transition}
-        style={{ transform: `translate(0px, ${translateY}px)`, opacity: opacityY }}
+        style={{ transform: `translate(0px, ${translateY - 100}px)`, opacity: opacityY }}
       >
-        <Box maxWidth="920px" direction="column" align="center" style={{ pointerEvents: 'none' }}>
-          <StyledH1>
-            {t('hero.swap.title')
-              .split(' ')
-              .map((word, index) => {
-                if (word === '<br/>') {
-                  return <br key={word} />
-                } else {
-                  return (
-                    <>
-                      <RiseInText key={word} delay={index * 0.1}>
-                        {word}
-                      </RiseInText>{' '}
-                    </>
-                  )
-                }
-              })}
-          </StyledH1>
-        </Box>
-
-        <RiseIn delay={0.4}>
-          <LandingSwapContainer>
-            <LandingSwap
-              syncTabToUrl={false}
-              chainId={initialInputCurrency?.chainId ?? UniverseChainId.Mainnet}
-              initialInputCurrency={initialInputCurrency}
-            />
-          </LandingSwapContainer>
-        </RiseIn>
-
-        <RiseIn delay={0.3}>
-          <Text
-            variant="body1"
-            textAlign="center"
-            maxWidth={430}
-            color="$neutral2"
-            $short={{
-              variant: 'body2',
-            }}
-          >
-            <Trans i18nKey="hero.subtitle" />
-          </Text>
-        </RiseIn>
-      </Center>
-      <LearnMoreContainer
-        position="absolute"
-        width="100%"
-        align="center"
-        justify="center"
-        pointerEvents="none"
-        style={{ transform: `translate(0px, ${translateY}px)`, opacity: opacityY }}
-      >
-        <RiseIn delay={0.3}>
-          <Box
-            direction="column"
-            align="center"
-            justify="flex-start"
-            onClick={() => scrollToRef()}
-            style={{ cursor: 'pointer' }}
-            width="500px"
-          >
-            <Hover>
-              <ColumnCenter>
-                <Text variant="body2">
-                  <Trans i18nKey="hero.scroll" />
-                </Text>
-                <ChevronDown />
-              </ColumnCenter>
-            </Hover>
+        <ButtonsWrapper>
+          <LogoBig />
+          <Box maxWidth="920px" direction="column" align="center" style={{ pointerEvents: 'none' }} marginBottom="30px">
+            <Title>{t('hero.swap.title')}</Title>
           </Box>
-        </RiseIn>
-      </LearnMoreContainer>
+
+          <ExchangeButton>{t('common.launchExchange')}</ExchangeButton>
+          <TelegramButton href="https://t.me" target="_blank">
+            {t('common.openInTelegram')}
+          </TelegramButton>
+        </ButtonsWrapper>
+      </Center>
     </Container>
   )
 }

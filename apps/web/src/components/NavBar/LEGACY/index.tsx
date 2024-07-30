@@ -4,12 +4,10 @@ import { Bag } from 'components/NavBar/Bag'
 import { ChainSelector } from 'components/NavBar/ChainSelector'
 import Blur from 'components/NavBar/LEGACY/Blur'
 import { More } from 'components/NavBar/LEGACY/Menu'
-import { SearchBar } from 'components/NavBar/LEGACY/SearchBar/SearchBar'
 import * as styles from 'components/NavBar/LEGACY/style.css'
 import Web3Status from 'components/Web3Status'
 import { chainIdToBackendChain } from 'constants/chains'
 import { useAccount } from 'hooks/useAccount'
-import { useDisableNFTRoutes } from 'hooks/useDisableNFTRoutes'
 import { useIsNftPage } from 'hooks/useIsNftPage'
 import { useIsSendPage } from 'hooks/useIsSendPage'
 import { useIsSwapPage } from 'hooks/useIsSwapPage'
@@ -17,7 +15,6 @@ import { Trans } from 'i18n'
 import { Box } from 'nft/components/Box'
 import { Row } from 'nft/components/Flex'
 import { useProfilePageState } from 'nft/hooks'
-import { useIsNavSearchInputVisible } from 'nft/hooks/useIsNavSearchInputVisible'
 import { ProfilePageStateType } from 'nft/types'
 import { ReactNode, useCallback } from 'react'
 import { NavLink, NavLinkProps, useLocation, useNavigate } from 'react-router-dom'
@@ -62,10 +59,6 @@ export const PageTabs = () => {
   const account = useAccount()
   const chainName = chainIdToBackendChain({ chainId: account.chainId, withFallback: true })
 
-  const isNftPage = useIsNftPage()
-
-  const shouldDisableNFTRoutes = useDisableNFTRoutes()
-
   return (
     <>
       <MenuItem href="/swap" isActive={pathname.startsWith('/swap')}>
@@ -77,11 +70,7 @@ export const PageTabs = () => {
       >
         <Trans i18nKey="common.products" />
       </MenuItem>
-      {!shouldDisableNFTRoutes && (
-        <MenuItem dataTestId="nft-nav" href="/nfts" isActive={isNftPage}>
-          <Trans i18nKey="common.nfts" />
-        </MenuItem>
-      )}
+
       <More />
     </>
   )
@@ -93,7 +82,6 @@ const LegacyNavbar = ({ blur }: { blur: boolean }) => {
   const isSendPage = useIsSendPage()
   const sellPageState = useProfilePageState((state) => state.state)
   const navigate = useNavigate()
-  const isNavSearchInputVisible = useIsNavSearchInputVisible()
   const multichainUXEnabled = useFeatureFlag(FeatureFlags.MultichainUX)
 
   const account = useAccount()
@@ -137,24 +125,9 @@ const LegacyNavbar = ({ blur }: { blur: boolean }) => {
               <PageTabs />
             </Row>
           </Box>
-          <Box
-            data-cy="center-search-container"
-            className={styles.searchContainer}
-            {...(isNavSearchInputVisible && {
-              display: 'flex',
-            })}
-          >
-            <SearchBar />
-          </Box>
+
           <Box className={styles.rightSideContainer}>
             <Row gap="12">
-              <Box
-                data-cy="right-search-container"
-                position="relative"
-                display={isNavSearchInputVisible ? 'none' : { sm: 'flex' }}
-              >
-                <SearchBar />
-              </Box>
               {isNftPage && sellPageState !== ProfilePageStateType.LISTING && <Bag />}
               {hideChainSelector ? null : (
                 <Box display={{ sm: 'none', lg: 'flex' }}>

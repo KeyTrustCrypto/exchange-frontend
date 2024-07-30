@@ -41,7 +41,6 @@ const ReviewButton = styled(ThemeButton)`
 `
 const RemoveAssetOverlay = styled.div`
   position: absolute;
-  display: block;
   right: -11px;
   top: -11px;
   z-index: 1;

@@ -5,7 +5,7 @@ const H1Styles = css<{ color?: string }>`
   margin: 0;
   color: ${(props) => props.color || props.theme.neutral1};
   text-align: center;
-  font-family: Basel;
+  font-family: Basel, Space, sans-serif;
   font-size: 64px;
   font-style: normal;
   font-weight: 500;
@@ -26,8 +26,8 @@ export const H2 = styled.h2`
   padding: 0;
   margin: 0;
   color: ${(props) => props.color || props.theme.neutral1};
-  font-family: Basel;
-  font-size: 52px;
+  font-family: Basel, Space, sans-serif;
+  font-size: 30px;
   font-style: normal;
   font-weight: 500;
   letter-spacing: -0.02em;
@@ -39,8 +39,8 @@ export const H2 = styled.h2`
 export const H3 = styled.h3`
   padding: 0;
   margin: 0;
-  font-family: Basel;
-  font-size: 24px;
+  font-family: Basel, Space, sans-serif;
+  font-size: 25px;
   font-style: normal;
   font-weight: 500;
   letter-spacing: -0.02em;
@@ -53,7 +53,7 @@ export const Body1 = styled.p`
   color: ${(props) => props.color || props.theme.neutral1};
   font-feature-settings: 'ss07' on;
   /* Body/1 */
-  font-family: Basel;
+  font-family: Basel, Space, sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 500;

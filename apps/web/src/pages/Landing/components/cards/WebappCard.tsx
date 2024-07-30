@@ -7,12 +7,13 @@ import { useCurrency } from 'hooks/Tokens'
 import { useScreenSize } from 'hooks/screenSize'
 import { t } from 'i18n'
 import { Box } from 'pages/Landing/components/Generics'
-import { Computer } from 'pages/Landing/components/Icons'
+import { Exchange } from 'pages/Landing/components/Icons'
 import { PillButton } from 'pages/Landing/components/cards/PillButton'
 import ValuePropCard from 'pages/Landing/components/cards/ValuePropCard'
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { opacify } from 'theme/utils'
 import { useTokenPromoQuery } from 'uniswap/src/data/graphql/uniswap-data-api/__generated__/types-and-hooks'
 import { UniverseChainId } from 'uniswap/src/types/chains'
 import { NumberType, useFormatter } from 'utils/formatNumbers'
@@ -41,14 +42,14 @@ const TokenRow = styled.div`
   width: 100%;
   height: 72px;
   overflow: hidden;
-  padding: 16px;
+  padding: 10px;
   padding-right: 24px;
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 16px;
-  border-radius: 20px;
-  background-color: ${({ theme }) => theme.surface1};
+  border-radius: 8px;
+  background-color: ${({ theme }) => opacify(10, theme.white)};
   @media (max-width: 1024px) {
     height: 64px;
     padding-right: 16px;
@@ -62,18 +63,15 @@ const TokenRow = styled.div`
     padding: 12px;
     border-radius: 16px;
   }
-  transition:
-    background-color 125ms ease-in,
-    transform 125ms ease-in;
+  transition: transform 125ms ease-in;
   &:hover {
-    background-color: ${({ theme }) => theme.surface2};
     transform: scale(1.03);
   }
 `
 const TokenName = styled.h3`
   padding: 0;
   margin: 0;
-  font-family: Basel;
+  font-family: Basel, Space, sans-serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -97,7 +95,7 @@ const TokenName = styled.h3`
 const TokenTicker = styled.h3`
   padding: 0;
   margin: 0;
-  font-family: Basel;
+  font-family: Basel, Space, sans-serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -118,7 +116,7 @@ const TokenTicker = styled.h3`
 const TokenPrice = styled.h3`
   padding: 0;
   margin: 0;
-  font-family: Basel;
+  font-family: Basel, Space, sans-serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -138,7 +136,7 @@ const DeltaText = styled.h3`
   text-align: right;
   padding: 0;
   margin: 0;
-  font-family: Basel;
+  font-family: Basel, Space, sans-serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -164,11 +162,6 @@ const DeltaContainer = styled(Box)`
     display: none;
   }
 `
-
-type WebappCardProps = {
-  isDarkMode?: boolean
-  tagText?: string
-}
 
 const primary = '#2ABDFF'
 
@@ -241,15 +234,13 @@ function Token({ chainId, address }: { chainId: SupportedInterfaceChainId; addre
   )
 }
 
-export function WebappCard(props: WebappCardProps) {
+export function WebappCard() {
   return (
     <ValuePropCard
       to="/tokens/ethereum"
-      minHeight="450px"
-      isDarkMode={props.isDarkMode}
-      textColor={primary}
-      backgroundColor={{ dark: 'rgba(0, 102, 255, 0.12)', light: 'rgba(0, 102, 255, 0.04)' }}
-      button={<PillButton color={primary} label={t('common.webApp')} icon={<Computer size="24px" fill={primary} />} />}
+      height="540px"
+      minHeight="540px"
+      button={<PillButton color="#262CB9" label={t('common.exchange')} bg="#FFFFFF" icon={<Exchange />} />}
       titleText={t('landing.swapSimple')}
     >
       <Contents>

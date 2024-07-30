@@ -1,8 +1,6 @@
 import { InterfaceElementName, InterfaceSectionName, SharedEventName } from '@uniswap/analytics-events'
 import { ActivityTab } from 'components/AccountDrawer/MiniPortfolio/Activity'
 import { usePendingActivity } from 'components/AccountDrawer/MiniPortfolio/Activity/hooks'
-import NFTs from 'components/AccountDrawer/MiniPortfolio/NFTs'
-import Pools from 'components/AccountDrawer/MiniPortfolio/Pools'
 import { PortfolioRowWrapper } from 'components/AccountDrawer/MiniPortfolio/PortfolioRow'
 import Tokens from 'components/AccountDrawer/MiniPortfolio/Tokens'
 import Column from 'components/Column'
@@ -76,18 +74,6 @@ const Pages: Array<Page> = [
     key: 'tokens',
     component: Tokens,
     loggingElementName: InterfaceElementName.MINI_PORTFOLIO_TOKENS_TAB,
-  },
-  {
-    title: <Trans i18nKey="common.nfts" />,
-    key: 'nfts',
-    component: NFTs,
-    loggingElementName: InterfaceElementName.MINI_PORTFOLIO_NFT_TAB,
-  },
-  {
-    title: <Trans i18nKey="common.pools" />,
-    key: 'pools',
-    component: Pools,
-    loggingElementName: InterfaceElementName.MINI_PORTFOLIO_POOLS_TAB,
   },
   {
     title: <Trans i18nKey="common.activity" />,

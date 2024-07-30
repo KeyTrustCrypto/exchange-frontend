@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion'
-import { Box, BoxProps } from 'pages/Landing/components/Generics'
+import { Box, BoxProps, H3 } from 'pages/Landing/components/Generics'
 import { useNavigate } from 'react-router-dom'
 import styled, { css } from 'styled-components'
+import { colors } from 'theme/colors'
+import { opacify } from 'theme/utils'
 
 type ValuePropCardProps = {
-  isDarkMode?: boolean
-  backgroundColor?: { light: string; dark: string }
+  backgroundColor?: string
   textColor?: string
   height?: string
   minHeight?: string
@@ -21,11 +22,13 @@ type ValuePropCardProps = {
 
 const Container = motion(styled(Box)<ValuePropCardProps & BoxProps>`
   position: relative;
-  border-radius: 32px;
+  border-radius: 20px;
   width: 100%;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
   height: ${(props) => props.height || '609px'};
-  background-color: ${(props) => (props.isDarkMode ? props.backgroundColor?.dark : props.backgroundColor?.light)};
+  background: ${(props) => props.backgroundColor};
   overflow: hidden;
   text-decoration: none;
   @media (max-width: 1024px) {
@@ -62,14 +65,9 @@ const Inner = styled.div<{ alignTextToBottom?: boolean }>`
     padding: 20px;
   }
 `
-const Title = styled.div`
+const Title = styled(H3)`
   color: ${(props) => props.color};
-  font-feature-settings: 'ss07' on;
-  font-family: Basel;
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 44px;
+  font-family: Basel, Space, sans-serif;
   white-space: pre-line;
   text-wrap: pretty;
   @media (max-width: 1024px) {
@@ -82,7 +80,15 @@ const Title = styled.div`
   }
 `
 export default function ValuePropCard(props: ValuePropCardProps & BoxProps) {
-  const { isDarkMode, backgroundColor, height, textColor, minHeight, alignTextToBottom, href, to } = props
+  const {
+    backgroundColor = opacify(5, colors.white),
+    height,
+    textColor = colors.white,
+    minHeight,
+    alignTextToBottom,
+    href,
+    to,
+  } = props
   const navigate = useNavigate()
   const handleClick = () => {
     if (to) {
@@ -93,7 +99,6 @@ export default function ValuePropCard(props: ValuePropCardProps & BoxProps) {
     <Container
       initial="initial"
       whileHover="hover"
-      isDarkMode={isDarkMode}
       backgroundColor={backgroundColor}
       height={height}
       minHeight={minHeight}

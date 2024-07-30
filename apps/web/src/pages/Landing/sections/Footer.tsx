@@ -39,7 +39,7 @@ const MenuItemStyles = css`
   padding: 0;
   margin: 0;
   text-align: left;
-  font-family: Basel;
+  font-family: Basel, Space, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -64,7 +64,7 @@ export function Socials({ iconSize }: { iconSize?: string }) {
   return (
     <Row gap="24px" maxHeight={iconSize} align="flex-start">
       <SocialIcon $hoverColor="#20BAFF">
-        <StyledExternalLink href="https://twitter.com/Uniswap">
+        <StyledExternalLink href="https://twitter.com">
           <Twitter size={iconSize} fill="inherit" />
         </StyledExternalLink>
       </SocialIcon>

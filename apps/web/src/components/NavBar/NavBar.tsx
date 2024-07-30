@@ -3,11 +3,9 @@ import { ChainSelector } from 'components/NavBar/ChainSelector'
 import { CompanyMenu } from 'components/NavBar/CompanyMenu'
 import { PreferenceMenu } from 'components/NavBar/PreferencesMenu'
 import { useTabsVisible } from 'components/NavBar/ScreenSizes'
-import { SearchBar } from 'components/NavBar/SearchBar'
 import { Tabs } from 'components/NavBar/Tabs/Tabs'
 import Row from 'components/Row'
 import Web3Status from 'components/Web3Status'
-import { useScreenSize } from 'hooks/screenSize'
 import { useAccount } from 'hooks/useAccount'
 import { useIsNftPage } from 'hooks/useIsNftPage'
 import { useIsSendPage } from 'hooks/useIsSendPage'
@@ -54,15 +52,6 @@ const Right = styled(Row)`
   align-self: flex-end;
   ${NavItems}
 `
-const SearchContainer = styled.div`
-  display: flex;
-  flex: 1;
-  flex-shrink: 1;
-  justify-content: center;
-  align-self: center;
-  align-items: flex-start;
-  height: 42px;
-`
 
 export const RefreshedNavbar = () => {
   const isNftPage = useIsNftPage()
@@ -70,11 +59,8 @@ export const RefreshedNavbar = () => {
   const isSwapPage = useIsSwapPage()
 
   const sellPageState = useProfilePageState((state) => state.state)
-  const isSmallScreen = !useScreenSize()['sm']
   const areTabsVisible = useTabsVisible()
-  const collapseSearchBar = !useScreenSize()['lg']
   const account = useAccount()
-  const NAV_SEARCH_MAX_HEIGHT = 'calc(100vh - 30px)'
 
   const multichainUXEnabled = useFeatureFlag(FeatureFlags.MultichainUX)
   const hideChainSelector = multichainUXEnabled ? isSendPage || isSwapPage || isNftPage : isNftPage
@@ -87,12 +73,7 @@ export const RefreshedNavbar = () => {
           {areTabsVisible && <Tabs />}
         </Left>
 
-        <SearchContainer data-cy="center-search-container">
-          {!collapseSearchBar && <SearchBar maxHeight={NAV_SEARCH_MAX_HEIGHT} fullScreen={isSmallScreen} />}
-        </SearchContainer>
-
         <Right>
-          {collapseSearchBar && <SearchBar maxHeight={NAV_SEARCH_MAX_HEIGHT} fullScreen={isSmallScreen} />}
           {isNftPage && sellPageState !== ProfilePageStateType.LISTING && <Bag />}
           {!account.isConnected && !account.isConnecting && <PreferenceMenu />}
           {!hideChainSelector && <ChainSelector />}

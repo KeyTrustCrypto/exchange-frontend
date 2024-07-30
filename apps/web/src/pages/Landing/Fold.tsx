@@ -1,6 +1,7 @@
 import { DirectToDefi } from 'pages/Landing/sections/DirectToDefi'
 import { Footer } from 'pages/Landing/sections/Footer'
 import { NewsletterEtc } from 'pages/Landing/sections/NewsletterEtc'
+import { Security } from 'pages/Landing/sections/Security'
 import { Stats } from 'pages/Landing/sections/Stats'
 import { forwardRef } from 'react'
 import styled from 'styled-components'
@@ -21,8 +22,9 @@ const Container = styled.div`
 const Fold = forwardRef<HTMLDivElement>(function Fold(props, scrollAnchor) {
   return (
     <Container ref={scrollAnchor}>
-      <DirectToDefi />
       <Stats />
+      <DirectToDefi />
+      <Security />
       <NewsletterEtc />
       <Footer />
     </Container>
