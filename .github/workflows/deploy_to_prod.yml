@@ -19,7 +19,7 @@ jobs:
         run: ls -la ./
 
       - name: Verify build directory
-        run: ls -la ./apps/web/build
+        run: ls -la ./apps/
         
       - name: Bump and tag
         id: github-tag-action
