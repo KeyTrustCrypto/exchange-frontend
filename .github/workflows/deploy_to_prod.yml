@@ -12,8 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup
-      - run: yarn prepare
-      - run: CI=false yarn build --verbose
+      - run: yarn g:prepare
+      - run: CI=false yarn g:build:prod        
       - name: Bump and tag
         id: github-tag-action
         uses: mathieudutour/github-tag-action@d745f2e74aaf1ee82e747b181f7a0967978abee0
@@ -26,8 +26,8 @@ jobs:
         id: pinata
         uses: anantaramdas/ipfs-pinata-deploy-action@39bbda1ce1fe24c69c6f57861b8038278d53688d
         with:
-          pin-name: Uniswap ${{ steps.github-tag-action.outputs.new_tag }}
-          path: './build'
+          pin-name: KeyTrust ${{ steps.github-tag-action.outputs.new_tag }}
+          path: './apps/web/build'
           pinata-api-key: ${{ secrets.PINATA_API_KEY }}
           pinata-secret-api-key: ${{ secrets.PINATA_API_SECRET_KEY }}
       
@@ -78,7 +78,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: ${{ secrets.CLOUDFLARE_PROJECT_NAME }}
-          directory: build
+          directory: apps/web/build
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           # Cloudflare uses `main` as the default production branch, so we push using the `main` branch so that it can be aliased by a custom domain.
           branch: main
