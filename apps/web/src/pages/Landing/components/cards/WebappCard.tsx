@@ -163,8 +163,6 @@ const DeltaContainer = styled(Box)`
   }
 `
 
-const primary = '#2ABDFF'
-
 const tokens: { chainId: SupportedInterfaceChainId; address: string }[] = [
   {
     chainId: UniverseChainId.Mainnet,
