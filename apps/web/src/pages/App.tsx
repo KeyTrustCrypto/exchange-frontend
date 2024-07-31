@@ -53,10 +53,10 @@ export default function App() {
     return null
   }
 
-  const shouldBlockPath = isPathBlocked(pathname)
-  if (shouldBlockPath && pathname !== '/swap') {
-    return <Navigate to="/swap" replace />
-  }
+  // const shouldBlockPath = isPathBlocked(pathname)
+  // if (shouldBlockPath && pathname !== '/swap') {
+  //   return <Navigate to="/swap" replace />
+  // }
   return (
     <ErrorBoundary>
       <Trace page={currentPage}>

@@ -36,17 +36,17 @@ export default function Landing() {
       redirectOnConnect.current = true
       setTransition(true)
     }
-    const timeoutId = setTimeout(
-      () => {
-        if (redirectOnConnect.current) {
-          navigate('/swap')
-        } else if (account.address && queryParams.intro) {
-          disconnect()
-        }
-      },
-      isExitAnimationEnabled ? TRANSITION_DURATIONS.slow : TRANSITION_DURATIONS.fast,
-    )
-    return () => clearTimeout(timeoutId)
+    // const timeoutId = setTimeout(
+    //   () => {
+    //     if (redirectOnConnect.current) {
+    //       navigate('/swap')
+    //     } else if (account.address && queryParams.intro) {
+    //       disconnect()
+    //     }
+    //   },
+    //   isExitAnimationEnabled ? TRANSITION_DURATIONS.slow : TRANSITION_DURATIONS.fast,
+    // )
+    // return () => clearTimeout(timeoutId)
   }, [
     account.address,
     prevAccount,
