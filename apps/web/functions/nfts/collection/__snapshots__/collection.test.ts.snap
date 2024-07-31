@@ -6,7 +6,7 @@ exports[`should inject metadata for collections 1`] = `
   <head>
     <meta charset="utf-8" />
 
-    <title>Uniswap Interface</title>
+    <title>KeyTrust interface</title>
 
     <!--
        will be replaced with the URL of the \`public\` folder during build.
@@ -144,7 +144,7 @@ exports[`should inject metadata for collections 2`] = `
   <head>
     <meta charset="utf-8" />
 
-    <title>Uniswap Interface</title>
+    <title>KeyTrust interface</title>
 
     <!--
        will be replaced with the URL of the \`public\` folder during build.
@@ -282,7 +282,7 @@ exports[`should inject metadata for collections 3`] = `
   <head>
     <meta charset="utf-8" />
 
-    <title>Uniswap Interface</title>
+    <title>KeyTrust interface</title>
 
     <!--
        will be replaced with the URL of the \`public\` folder during build.

@@ -38,7 +38,7 @@ export default function App() {
   useSyncChainQuery(chainIdRef)
 
   const metaTags = useDynamicMetatags()
-  const staticTitle = findRouteByPath(pathname)?.getTitle(pathname) ?? 'Uniswap Interface'
+  const staticTitle = findRouteByPath(pathname)?.getTitle(pathname) ?? 'KeyTrust interface'
   const staticDescription = findRouteByPath(pathname)?.getDescription(pathname)
 
   // redirect address to landing pages until implemented

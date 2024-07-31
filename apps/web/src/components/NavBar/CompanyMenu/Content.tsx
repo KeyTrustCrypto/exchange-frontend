@@ -39,8 +39,8 @@ export const useMenuContent = (): MenuSection[] => {
     title: t('common.needHelp'),
     key: 'Help',
     items: [
-      { label: t('common.helpCenter'), href: 'https://support.uniswap.org/hc/en-us' },
-      { label: t('common.contactUs.button'), href: 'https://support.uniswap.org/hc/en-us/requests/new' },
+      { label: t('common.helpCenter'), href: 'https://google.com' },
+      { label: t('common.contactUs.button'), href: 'https://google.com' },
     ],
   }
 

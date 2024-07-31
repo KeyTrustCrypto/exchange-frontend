@@ -235,7 +235,7 @@ function Token({ chainId, address }: { chainId: SupportedInterfaceChainId; addre
 export function WebappCard() {
   return (
     <ValuePropCard
-      to="/tokens/ethereum"
+      href="https://www.google.com/"
       height="540px"
       minHeight="540px"
       button={<PillButton color="#262CB9" label={t('common.exchange')} bg="#FFFFFF" icon={<Exchange />} />}

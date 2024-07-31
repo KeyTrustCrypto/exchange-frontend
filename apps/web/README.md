@@ -1,8 +1,8 @@
 # Uniswap Labs Web Interface
 
-## Accessing the Uniswap Interface
+## Accessing the KeyTrust interface
 
-To access the Uniswap Interface, use an IPFS gateway link from the
+To access the KeyTrust interface, use an IPFS gateway link from the
 [latest release](https://github.com/Uniswap/uniswap-interface/releases/latest),
 or visit [app.uniswap.org](https://app.uniswap.org).
 
@@ -37,7 +37,7 @@ Which will download the translations to `./apps/web/src/i18n/locales/translation
 
 ## Accessing Uniswap V2
 
-The Uniswap Interface supports swapping, adding liquidity, removing liquidity and migrating liquidity for Uniswap protocol V2.
+The KeyTrust interface supports swapping, adding liquidity, removing liquidity and migrating liquidity for Uniswap protocol V2.
 
 - Swap on Uniswap V2: <https://app.uniswap.org/swap?use=v2>
 - View V2 liquidity: <https://app.uniswap.org/pools/v2>

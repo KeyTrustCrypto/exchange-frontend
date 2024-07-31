@@ -107,7 +107,7 @@ export function Footer() {
               <Body1>
                 <Trans i18nKey="common.ecosystem" />
               </Body1>
-              <StyledExternalLink href="https://uniswap.org/developers">
+              <StyledExternalLink href="https://google.com">
                 <Trans i18nKey="common.developers" />
               </StyledExternalLink>
             </Box>
@@ -115,10 +115,10 @@ export function Footer() {
               <Body1>
                 <Trans i18nKey="common.needHelp" />
               </Body1>
-              <StyledExternalLink href="https://support.uniswap.org/hc/en-us/requests/new">
+              <StyledExternalLink href="https://google.com">
                 <Trans i18nKey="common.contactUs.button" />
               </StyledExternalLink>
-              <StyledExternalLink href="https://support.uniswap.org/hc/en-us">
+              <StyledExternalLink href="https://google.com">
                 <Trans i18nKey="common.helpCenter" />
               </StyledExternalLink>
             </Box>
