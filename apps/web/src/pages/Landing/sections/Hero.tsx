@@ -1,4 +1,5 @@
 import mainPageLines from 'assets/images/mainPageLines.png'
+import { ButtonPrimary } from 'components/Button'
 import { ColumnCenter } from 'components/Column'
 import { useScroll } from 'hooks/useScroll'
 import { Trans } from 'i18n'
@@ -11,7 +12,6 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled, { css, keyframes } from 'styled-components'
 import { BREAKPOINTS } from 'theme'
-import { Z_INDEX } from 'theme/zIndex'
 import { Text } from 'ui/src'
 import { heightBreakpoints } from 'ui/src/theme'
 
@@ -79,48 +79,33 @@ const Center = styled(Box)<{ transition?: boolean }>`
 `
 
 const ButtonsWrapper = styled.div`
+  pointer-events: auto;
   position: relative;
   display: flex;
   align-items: center;
   max-width: 300px;
   flex-direction: column;
   gap: 16px;
-  z-index: ${Z_INDEX.fixed};
 `
 
-const ExchangeButton = styled.button`
-  width: 100%;
-  height: 50px;
-  padding: 10px 20px 10px 20px;
-  border-radius: 10px;
-  text-transform: uppercase;
-  font-family: Montserrat, sans-serif;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  font-weight: 800;
-  background: ${({ theme }) => theme.accent1};
-  color: ${({ theme }) => theme.white};
-  cursor: pointer;
-`
-const TelegramButton = styled.a`
-  all: unset;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  width: 100%;
-  height: 50px;
-  padding: 10px 20px 10px 20px;
-  box-sizing: border-box;
-  border-radius: 10px;
-  text-transform: uppercase;
+const TelegramButton = styled(ButtonPrimary)`
   border: 1px solid ${({ theme }) => theme.white};
   background: transparent;
-  font-size: 16px;
-  font-weight: 800;
-  font-family: Montserrat, sans-serif;
-  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 15px;
+
+  &:hover {
+    border: 1px solid ${({ theme }) => theme.white};
+    background: transparent;
+  }
+  &:active {
+    border: 1px solid ${({ theme }) => theme.white};
+    background: transparent;
+  }
+  &:disabled {
+    border: 1px solid ${({ theme }) => theme.white};
+    background: transparent;
+  }
 `
 
 interface HeroProps {
@@ -138,6 +123,10 @@ export function Hero({ scrollToRef, transition }: HeroProps) {
 
   const handleExchange = () => {
     navigate('/buy')
+  }
+
+  const handleTelegram = () => {
+    window.open('https://t.me', '_blank')
   }
 
   return (
@@ -167,10 +156,16 @@ export function Hero({ scrollToRef, transition }: HeroProps) {
               <Title>{t('hero.swap.title')}</Title>
             </Box>
 
-            <ExchangeButton onClick={handleExchange}>{t('common.launchExchange')}</ExchangeButton>
-            <TelegramButton href="https://t.me" target="_blank">
-              {t('common.openInTelegram')}
-            </TelegramButton>
+            <ButtonPrimary
+              onClick={handleExchange}
+              style={{
+                textTransform: 'uppercase',
+                fontSize: 15,
+              }}
+            >
+              {t('common.launchExchange')}
+            </ButtonPrimary>
+            <TelegramButton onClick={handleTelegram}>{t('common.openInTelegram')}</TelegramButton>
           </ButtonsWrapper>
         </RiseIn>
       </Center>

@@ -9,7 +9,8 @@ import { Popover } from 'ui/src'
 const NavDropdownContent = styled.div<{ $width?: number }>`
   border-radius: 16px;
   border: 1px solid ${({ theme }) => theme.surface3};
-  background: ${({ theme }) => theme.surface1};
+  //background: ${({ theme }) => theme.surface1};
+  background-color: #13101e;
   ${({ theme }) => !theme.darkMode && `box-shadow: 3px 3px 10px ${theme.surface3}`};
   ${({ $width }) => $width && `width: ${$width}px;`}
   max-height: calc(100dvh - ${({ theme }) => theme.navHeight}px);

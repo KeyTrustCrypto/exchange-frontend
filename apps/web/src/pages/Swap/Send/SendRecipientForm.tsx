@@ -36,7 +36,8 @@ const StyledCloseIcon = styled(X)`
 
 const RecipientWrapper = styled(Column)<{ $disabled?: boolean }>`
   position: relative;
-  background-color: ${({ theme }) => theme.surface2};
+  //background-color: ${({ theme }) => theme.surface2};
+  background-color: #13101e;
   border-radius: 16px;
   padding: 12px 16px;
   gap: 4px;

@@ -121,7 +121,8 @@ const AccountDrawerWrapper = styled.div<{ open: boolean }>`
   width: ${DRAWER_WIDTH};
   max-width: ${DRAWER_WIDTH};
   font-size: 16px;
-  background-color: ${({ theme }) => theme.surface1};
+  //background-color: ${({ theme }) => theme.surface1};
+  background-color: #13101e;
   border: ${({ theme }) => `1px solid ${theme.surface3}`};
 
   box-shadow: ${({ theme }) => theme.deprecated_deepShadow};

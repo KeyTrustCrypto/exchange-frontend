@@ -28,7 +28,8 @@ import { NumberType, useFormatter } from 'utils/formatNumbers'
 
 const InputWrapper = styled(Column)`
   position: relative;
-  background-color: ${({ theme }) => theme.surface2};
+  //background-color: ${({ theme }) => theme.surface2};
+  background-color: #13101e;
   padding: 0 16px 40px 16px;
   height: 342px;
   align-items: center;

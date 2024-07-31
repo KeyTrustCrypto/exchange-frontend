@@ -36,7 +36,7 @@ export const BaseButton = styled(RebassButton)<BaseButtonProps>`
   line-height: 24px;
   font-weight: 700;
   text-align: center;
-  border-radius: ${({ $borderRadius }) => $borderRadius ?? '16px'};
+  border-radius: ${({ $borderRadius }) => $borderRadius ?? '10px'};
   outline: none;
   border: 1px solid transparent;
   background-color: #6c26de;

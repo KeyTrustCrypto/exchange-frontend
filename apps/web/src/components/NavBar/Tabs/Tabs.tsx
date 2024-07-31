@@ -15,10 +15,12 @@ const ItemContainer = styled.div`
   gap: 8px;
   align-self: stretch;
   border-radius: 12px;
-  background: ${({ theme }) => theme.surface2};
+  //background: ${({ theme }) => theme.surface2};
+  background-color: #13101e;
   cursor: pointer;
-  :hover {
-    background: ${({ theme }) => theme.surface3};
+
+  &:hover {
+    background-color: #181525;
   }
 `
 const TabText = styled(Text)`
@@ -26,9 +28,6 @@ const TabText = styled(Text)`
   display: flex;
   justify-content: center;
   align-items: center;
-  &:hover {
-    color: ${({ theme }) => theme.neutral1} !important;
-  }
 `
 const QuickKey = styled.div`
   display: flex;
@@ -47,14 +46,15 @@ interface TItemProps {
   icon?: JSX.Element
   label: string
   quickKey: string
+  target?: string
   path: string
   closeMenu: () => void
 }
-function Item({ icon, label, quickKey, path, closeMenu }: TItemProps) {
+function Item({ icon, label, quickKey, path, closeMenu, target }: TItemProps) {
   const navHotkeysEnabled = useFeatureFlag(FeatureFlags.NavigationHotkeys)
 
   return (
-    <NavLink to={path} style={{ textDecoration: 'none' }} onClick={closeMenu}>
+    <NavLink to={path} style={{ textDecoration: 'none' }} onClick={closeMenu} target={target}>
       <ItemContainer>
         {icon}
         <Text variant="buttonLabel2" width="100%" color="$neutral2">
@@ -153,6 +153,7 @@ const Tab = ({
               label={item.label}
               quickKey={item.quickKey}
               path={item.href}
+              target={item.target}
               closeMenu={closeMenu}
             />
           ))}

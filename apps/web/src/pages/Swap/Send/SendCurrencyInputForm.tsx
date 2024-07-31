@@ -42,7 +42,8 @@ const Wrapper = styled(Column)<{ $disabled: boolean }>`
 
 const CurrencyInputWrapper = styled(PrefetchBalancesWrapper)`
   display: flex;
-  background-color: ${({ theme }) => theme.surface2};
+  //background-color: ${({ theme }) => theme.surface2};
+  background-color: #13101e;
   padding: 16px 16px;
   border-radius: 0px 0px 16px 16px;
   height: 64px;
@@ -56,7 +57,8 @@ const ClickableRowBetween = styled(RowBetween)`
 
 const InputWrapper = styled(Column)`
   position: relative;
-  background-color: ${({ theme }) => theme.surface2};
+  //background-color: ${({ theme }) => theme.surface2};
+  background-color: #13101e;
   padding: 0px 12px 60px 12px;
   height: 256px;
   align-items: center;
