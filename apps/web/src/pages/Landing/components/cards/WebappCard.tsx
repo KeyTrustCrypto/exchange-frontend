@@ -198,12 +198,12 @@ function Token({ chainId, address }: { chainId: SupportedInterfaceChainId; addre
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       e.stopPropagation()
-      navigate(
-        getTokenDetailsURL({
-          address: address === 'ETH' ? NATIVE_CHAIN_ID : address,
-          chain: chainIdToBackendChain({ chainId }),
-        }),
-      )
+      // navigate(
+      //   getTokenDetailsURL({
+      //     address: address === 'ETH' ? NATIVE_CHAIN_ID : address,
+      //     chain: chainIdToBackendChain({ chainId }),
+      //   }),
+      // )
     },
     [address, chainId, navigate],
   )
@@ -235,7 +235,7 @@ function Token({ chainId, address }: { chainId: SupportedInterfaceChainId; addre
 export function WebappCard() {
   return (
     <ValuePropCard
-      href="https://www.google.com/"
+      // href="https://www.google.com/"
       height="540px"
       minHeight="540px"
       button={<PillButton color="#262CB9" label={t('common.exchange')} bg="#FFFFFF" icon={<Exchange />} />}

@@ -149,7 +149,7 @@ const Explore = ({ initialTab }: { initialTab?: ExploreTab }) => {
     useCallback(
       (_chainId, chain) => {
         if (chain && isBackendSupportedChain(chain)) {
-          navigate(getTokenExploreURL({ tab, chain }))
+          // navigate(getTokenExploreURL({ tab, chain }))
         }
       },
       [navigate, tab],
@@ -170,13 +170,13 @@ const Explore = ({ initialTab }: { initialTab?: ExploreTab }) => {
                   element={loggingElementName}
                   key={index}
                 >
-                  <StyledInternalLink
+                  {/* <StyledInternalLink
                     to={`/explore/${key}` + (chain.id !== UniverseChainId.Mainnet ? `/${chain.urlParam}` : '')}
                   >
                     <TabItem onClick={() => setCurrentTab(index)} active={currentTab === index} key={key}>
                       {title}
                     </TabItem>
-                  </StyledInternalLink>
+                  </StyledInternalLink> */}
                 </Trace>
               )
             })}

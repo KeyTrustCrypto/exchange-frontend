@@ -8,7 +8,7 @@ export function TokenCard() {
     <ValuePropCard
       height="250px"
       minHeight="250px"
-      to="https://www.google.com/"
+      // to="https://www.google.com/"
       button={<PillButton label={t('common.token')} icon={<Token />} />}
       titleText={t('common.casino.description')}
     />
