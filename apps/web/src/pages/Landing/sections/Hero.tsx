@@ -33,7 +33,7 @@ const Container = styled(Box)`
   //background-size: cover;
   //background-position: center;
   // background-image: url(${mainPageLines}), ${({ theme }) => theme.brandedGradient};
-  background: ${({ theme }) => theme.surface1};
+  //background: ${({ theme }) => theme.surface1};
   border-radius: 0 0 24px 24px;
   align-items: center;
 `
