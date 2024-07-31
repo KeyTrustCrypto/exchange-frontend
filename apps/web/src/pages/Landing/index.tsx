@@ -62,7 +62,7 @@ export default function Landing() {
   // The intro query parameter can be used to override this
 
   if ((account.isConnected || hasRecentConnection) && !queryParams.intro) {
-    return <Navigate to={{ ...location, pathname: '/swap' }} replace />
+    return <Navigate to={{ ...location, pathname: '/buy' }} replace />
   }
 
   return (
