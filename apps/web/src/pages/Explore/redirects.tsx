@@ -33,13 +33,13 @@ export default function RedirectExplore() {
   const isLegacyUrl = !useLocation().pathname.includes('explore')
 
   if (isLegacyUrl) {
-    if (tab && chainName && tokenAddress) {
-      return <Navigate to={`/explore/${tab}/${chainName}/${tokenAddress}`} replace />
-    } else if (chainName && tokenAddress) {
-      return <Navigate to={`/explore/tokens/${chainName}/${tokenAddress}`} replace />
-    } else if (tab && chainName) {
-      return <Navigate to={`/explore/${tab}/${chainName}`} replace />
-    }
+    // if (tab && chainName && tokenAddress) {
+    //   return <Navigate to={`/explore/${tab}/${chainName}/${tokenAddress}`} replace />
+    // } else if (chainName && tokenAddress) {
+    //   return <Navigate to={`/explore/tokens/${chainName}/${tokenAddress}`} replace />
+    // } else if (tab && chainName) {
+    //   return <Navigate to={`/explore/${tab}/${chainName}`} replace />
+    // }
   }
 
   return <Explore initialTab={tab} />
