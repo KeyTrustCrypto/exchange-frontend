@@ -76,8 +76,8 @@ export function TokenCloud({ transition }: { transition?: boolean }) {
     const rightThreshold = w / 2 + 240
     const poissonConfig = {
       shape: [w, h],
-      minDistance: 250,
-      maxDistance: 375,
+      minDistance: 400,
+      maxDistance: 500,
       tries: 10,
     }
     const poissonDiskSampling = new PoissonDiskSampling(poissonConfig)
