@@ -16,11 +16,13 @@ const TextWrapper = styled.div`
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 50px;
+  gap: 16px;
   padding: 0 40px;
+  max-width: 1360px;
 
   @media (max-width: 768px) {
     padding: 0 48px;
+    grid-template-columns: 1fr;
   }
   @media (max-width: 468px) {
     padding: 0 24px;

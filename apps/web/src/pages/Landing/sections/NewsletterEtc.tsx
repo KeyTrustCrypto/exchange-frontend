@@ -27,8 +27,7 @@ const Layout = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   @media (max-width: 768px) {
-    grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 `
 const SectionCol = styled(Box)`

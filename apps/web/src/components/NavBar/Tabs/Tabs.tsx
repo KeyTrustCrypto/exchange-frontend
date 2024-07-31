@@ -75,10 +75,12 @@ function Item({ icon, label, quickKey, path, closeMenu }: TItemProps) {
 const Tab = ({
   label,
   isActive,
+  target,
   path,
   items,
 }: {
   label: string
+  target?: string
   isActive?: boolean
   path: string
   items?: TabsItem[]
@@ -95,7 +97,7 @@ const Tab = ({
   useEffect(() => closeMenu(), [location, closeMenu])
 
   const Label = (
-    <NavLink to={path} style={{ textDecoration: 'none' }}>
+    <NavLink to={path} style={{ textDecoration: 'none' }} target={target}>
       <TabText
         variant="subheading1"
         color={isActive || isOpen ? '$neutral1' : '$neutral2'}
@@ -115,13 +117,14 @@ const Tab = ({
         return
       }
       const item = items.find((i) => i.quickKey.toUpperCase() === event.key || i.quickKey.toLowerCase() === event.key)
+
       if (!item) {
         return
       }
       if (item.internal) {
         navigate(item.href)
       } else {
-        window.location.href = item.href
+        window.open(item.href, '_blank')
       }
       closeMenu()
     },
@@ -163,8 +166,8 @@ export function Tabs() {
   const tabsContent: TabsSection[] = useTabsContent()
   return (
     <>
-      {tabsContent.map(({ title, isActive, href, items }, index) => (
-        <Tab key={`${title}_${index}`} label={title} isActive={isActive} path={href} items={items} />
+      {tabsContent.map(({ title, isActive, href, target, items }, index) => (
+        <Tab key={`${title}_${index}`} label={title} isActive={isActive} path={href} target={target} items={items} />
       ))}
     </>
   )

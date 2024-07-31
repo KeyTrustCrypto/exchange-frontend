@@ -1,6 +1,5 @@
 import { RowBetween, RowFixed } from 'components/Row'
 import SettingsTab from 'components/Settings'
-import SwapBuyFiatButton from 'components/swap/SwapBuyFiatButton'
 import { SwapHeaderTabButton } from 'components/swap/styled'
 import { Trans } from 'i18n'
 import { useCallback, useEffect, useState } from 'react'
@@ -71,15 +70,12 @@ export default function SwapHeader({ compact, syncTabToUrl }: { compact: boolean
     <StyledSwapHeader>
       <HeaderButtonContainer compact={compact}>
         <SwapHeaderTabButton
-          as={pathname === '/swap' ? 'h1' : 'button'}
-          role="button"
-          tabIndex={0}
-          $isActive={currentTab === SwapTab.Swap}
+          $isActive={currentTab === SwapTab.Buy}
           onClick={() => {
-            onTabClick(SwapTab.Swap)
+            onTabClick(SwapTab.Buy)
           }}
         >
-          <Trans i18nKey="common.swap" />
+          <Trans i18nKey="common.buy.label" />
         </SwapHeaderTabButton>
 
         {!isIFramed() && (
@@ -92,18 +88,17 @@ export default function SwapHeader({ compact, syncTabToUrl }: { compact: boolean
             <Trans i18nKey="common.send.button" />
           </SwapHeaderTabButton>
         )}
-        {forAggregatorEnabled ? (
-          <SwapHeaderTabButton
-            $isActive={currentTab === SwapTab.Buy}
-            onClick={() => {
-              onTabClick(SwapTab.Buy)
-            }}
-          >
-            <Trans i18nKey="common.buy.label" />
-          </SwapHeaderTabButton>
-        ) : (
-          <SwapBuyFiatButton triggerBuyFlow={triggerBuyFlow} setTriggerBuyFlow={setTriggerBuyFlow} />
-        )}
+        <SwapHeaderTabButton
+          as={pathname === '/swap' ? 'h1' : 'button'}
+          role="button"
+          tabIndex={0}
+          $isActive={currentTab === SwapTab.Swap}
+          onClick={() => {
+            onTabClick(SwapTab.Swap)
+          }}
+        >
+          <Trans i18nKey="common.swap" />
+        </SwapHeaderTabButton>
       </HeaderButtonContainer>
       {currentTab === SwapTab.Swap && (
         <RowFixed>

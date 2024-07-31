@@ -31,11 +31,19 @@ const Grain = styled.div`
 
 function LandingV2({ transition }: { transition?: boolean }) {
   const scrollAnchor = useRef<HTMLDivElement | null>(null)
+  const scrollToRef = () => {
+    if (scrollAnchor.current) {
+      window.scrollTo({
+        top: scrollAnchor.current.offsetTop - 120,
+        behavior: 'smooth',
+      })
+    }
+  }
 
   return (
     <Container data-testid="landing-page">
       <Grain />
-      <Hero transition={transition} />
+      <Hero scrollToRef={scrollToRef} transition={transition} />
       <Suspense>
         <Fold ref={scrollAnchor} />
       </Suspense>

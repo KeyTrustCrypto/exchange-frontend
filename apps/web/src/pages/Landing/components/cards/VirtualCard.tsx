@@ -1,4 +1,4 @@
-import virtualCard from 'assets/images/virtualCard.png'
+import keytrustVirtualCard from 'assets/images/keytrustVirtualCard.gif'
 import { t } from 'i18n'
 import { CreditCard } from 'pages/Landing/components/Icons'
 import { PillButton } from 'pages/Landing/components/cards/PillButton'
@@ -15,9 +15,9 @@ const Contents = styled.div`
 `
 
 const CardImg = styled(Image)`
-  width: 308px;
-  height: 200px;
-  aspect-ratio: auto;
+  width: 150%;
+  max-width: 700px;
+  height: 300px;
 `
 
 export function VirtualCard() {
@@ -32,7 +32,7 @@ export function VirtualCard() {
       titleText={t('common.virtual.cards.description')}
     >
       <Contents>
-        <CardImg src={virtualCard} alt="Virtual Card" />
+        <CardImg src={keytrustVirtualCard} alt="Virtual Card" />
       </Contents>
     </ValuePropCard>
   )

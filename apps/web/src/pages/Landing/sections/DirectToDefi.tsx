@@ -46,6 +46,11 @@ const Row = styled.div`
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
   margin-bottom: 50px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
 `
 export function DirectToDefi() {
   return (

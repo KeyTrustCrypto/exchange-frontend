@@ -1,3 +1,4 @@
+import { CreditCardIcon } from 'components/Icons/CreditCard'
 import { Send } from 'components/Icons/Send'
 import { SwapV2 } from 'components/Icons/SwapV2'
 import { MenuItem } from 'components/NavBar/CompanyMenu/Content'
@@ -12,6 +13,7 @@ export type TabsSection = {
   href: string
   isActive?: boolean
   internal?: boolean
+  target?: string
   items?: TabsItem[]
   closeMenu?: () => void
 }
@@ -40,15 +42,15 @@ export const useTabsContent = (): TabsSection[] => {
       ]
     : [
         {
-          title: t('common.trade'),
-          href: '/swap',
-          isActive: pathname.startsWith('/swap') || pathname.startsWith('/send'),
+          title: t('common.exchange'),
+          href: '/buy',
+          isActive: pathname.startsWith('/swap') || pathname.startsWith('/send') || pathname.startsWith('/buy'),
           items: [
             {
-              label: t('common.swap'),
-              icon: <SwapV2 fill={theme.neutral2} />,
-              quickKey: t`U`,
-              href: '/swap',
+              label: t('common.buy.label'),
+              icon: <CreditCardIcon fill={theme.neutral2} />,
+              quickKey: t`B`,
+              href: '/buy',
               internal: true,
             },
             {
@@ -58,17 +60,43 @@ export const useTabsContent = (): TabsSection[] => {
               href: '/send',
               internal: true,
             },
+            {
+              label: t('common.swap'),
+              icon: <SwapV2 fill={theme.neutral2} />,
+              quickKey: t`U`,
+              href: '/swap',
+              internal: true,
+            },
           ],
         },
         {
           title: t('common.products'),
           href: 'https://www.google.com/',
           isActive: pathname.startsWith('/explore') || pathname.startsWith('/nfts'),
+          target: '_blank',
           internal: false,
           items: [
-            { label: t('common.virtual_cards'), quickKey: t`T`, href: 'https://www.google.com/', internal: false },
-            { label: t('common.casino'), quickKey: t`P`, href: 'https://www.google.com/', internal: false },
-            { label: t('common.xcube'), quickKey: t`X`, href: 'https://www.google.com/', internal: false },
+            {
+              label: t('common.virtual_cards'),
+              quickKey: t`T`,
+              href: 'https://www.google.com/',
+              target: '_blank',
+              internal: false,
+            },
+            {
+              label: t('common.casino'),
+              quickKey: t`P`,
+              href: 'https://www.google.com/',
+              target: '_blank',
+              internal: false,
+            },
+            {
+              label: t('common.xcube'),
+              quickKey: t`X`,
+              href: 'https://www.google.com/',
+              target: '_blank',
+              internal: false,
+            },
           ],
         },
       ]

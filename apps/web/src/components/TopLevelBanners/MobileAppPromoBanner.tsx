@@ -1,5 +1,5 @@
-import { ReactComponent as UniswapLogo } from 'assets/svg/uniswap_app_logo.svg'
 import { useAtomValue } from 'jotai/utils'
+import { Logo } from 'pages/Landing/components/Icons'
 import { useState } from 'react'
 import { hideMobileAppPromoBannerAtom } from 'state/application/atoms'
 import styled from 'styled-components'
@@ -74,7 +74,8 @@ export function MobileAppPromoBanner() {
 
   return (
     <Wrapper>
-      <UniswapLogo width="32px" height="32px" />
+      {/*<UniswapLogo width="32px" height="32px" />*/}
+      <Logo />
     </Wrapper>
   )
 }

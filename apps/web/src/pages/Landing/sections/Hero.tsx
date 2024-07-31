@@ -1,17 +1,39 @@
 import mainPageLines from 'assets/images/mainPageLines.png'
+import { ColumnCenter } from 'components/Column'
 import { useScroll } from 'hooks/useScroll'
+import { Trans } from 'i18n'
 import { Box, H2 } from 'pages/Landing/components/Generics'
 import { LogoBig } from 'pages/Landing/components/Icons'
-import { TokenCloud } from 'pages/Landing/components/TokenCloud/index'
+import { TokenCloud } from 'pages/Landing/components/TokenCloud'
+import { Hover, RiseIn } from 'pages/Landing/components/animations'
+import { ChevronDown } from 'react-feather'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 import styled, { css, keyframes } from 'styled-components'
+import { BREAKPOINTS } from 'theme'
+import { Z_INDEX } from 'theme/zIndex'
+import { Text } from 'ui/src'
+import { heightBreakpoints } from 'ui/src/theme'
+
+const LearnMoreContainer = styled(Box)`
+  bottom: 48px;
+  @media (max-width: ${BREAKPOINTS.md}px) {
+    bottom: 64px;
+  }
+
+  // Prevent overlap of Hero text and Learn More button on short screens
+  @media (max-height: ${heightBreakpoints.short + 30}px) {
+    display: none;
+  }
+`
 
 const Container = styled(Box)`
   min-width: 100%;
   padding-top: ${({ theme }) => theme.navHeight}px;
-  background-size: cover;
-  background-position: center;
-  background-image: url(${mainPageLines}), ${({ theme }) => theme.brandedGradient};
+  //background-size: cover;
+  //background-position: center;
+  // background-image: url(${mainPageLines}), ${({ theme }) => theme.brandedGradient};
+  background: ${({ theme }) => theme.surface1};
   border-radius: 0 0 24px 24px;
   align-items: center;
 `
@@ -57,11 +79,13 @@ const Center = styled(Box)<{ transition?: boolean }>`
 `
 
 const ButtonsWrapper = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   max-width: 300px;
   flex-direction: column;
   gap: 16px;
+  z-index: ${Z_INDEX.fixed};
 `
 
 const ExchangeButton = styled.button`
@@ -100,15 +124,21 @@ const TelegramButton = styled.a`
 `
 
 interface HeroProps {
+  scrollToRef: () => void
   transition?: boolean
 }
 
-export function Hero({ transition }: HeroProps) {
+export function Hero({ scrollToRef, transition }: HeroProps) {
   const { height: scrollPosition } = useScroll()
   const { t } = useTranslation()
+  const navigate = useNavigate()
 
   const translateY = -scrollPosition / 7
   const opacityY = 1 - scrollPosition / 1000
+
+  const handleExchange = () => {
+    navigate('/buy')
+  }
 
   return (
     <Container
@@ -124,18 +154,54 @@ export function Hero({ transition }: HeroProps) {
         transition={transition}
         style={{ transform: `translate(0px, ${translateY - 100}px)`, opacity: opacityY }}
       >
-        <ButtonsWrapper>
-          <LogoBig />
-          <Box maxWidth="920px" direction="column" align="center" style={{ pointerEvents: 'none' }} marginBottom="30px">
-            <Title>{t('hero.swap.title')}</Title>
-          </Box>
+        <RiseIn delay={0.1}>
+          <ButtonsWrapper>
+            <LogoBig />
+            <Box
+              maxWidth="920px"
+              direction="column"
+              align="center"
+              style={{ pointerEvents: 'none' }}
+              marginBottom="30px"
+            >
+              <Title>{t('hero.swap.title')}</Title>
+            </Box>
 
-          <ExchangeButton>{t('common.launchExchange')}</ExchangeButton>
-          <TelegramButton href="https://t.me" target="_blank">
-            {t('common.openInTelegram')}
-          </TelegramButton>
-        </ButtonsWrapper>
+            <ExchangeButton onClick={handleExchange}>{t('common.launchExchange')}</ExchangeButton>
+            <TelegramButton href="https://t.me" target="_blank">
+              {t('common.openInTelegram')}
+            </TelegramButton>
+          </ButtonsWrapper>
+        </RiseIn>
       </Center>
+      <LearnMoreContainer
+        position="absolute"
+        width="100%"
+        align="center"
+        justify="center"
+        pointerEvents="none"
+        style={{ transform: `translate(0px, ${translateY}px)`, opacity: opacityY }}
+      >
+        <RiseIn delay={0.3}>
+          <Box
+            direction="column"
+            align="center"
+            justify="flex-start"
+            onClick={() => scrollToRef()}
+            style={{ cursor: 'pointer' }}
+            width="500px"
+          >
+            <Hover>
+              <ColumnCenter>
+                <Text variant="body2">
+                  <Trans i18nKey="hero.scroll" />
+                </Text>
+                <ChevronDown />
+              </ColumnCenter>
+            </Hover>
+          </Box>
+        </RiseIn>
+      </LearnMoreContainer>
     </Container>
   )
 }
