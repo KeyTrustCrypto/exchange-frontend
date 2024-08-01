@@ -43,10 +43,10 @@ export const Header = memo(function Header() {
 
   return (
     <AppHeader>
-      <Banners>
+      {/* <Banners>
         {extensionEligible && <MobileAppPromoBanner />}
         {renderUkBanner && <UkBanner />}
-      </Banners>
+      </Banners> */}
       <NavOnScroll
         $hide={!isExplorePage && !isLegacyNav && scrollDirection === ScrollDirection.DOWN}
         $transparent={isHeaderTransparent}
