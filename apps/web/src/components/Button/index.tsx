@@ -104,7 +104,7 @@ export const SmallButtonPrimary = styled(ButtonPrimary)`
 
 const BaseButtonLight = styled(BaseButton)`
   background-color: ${({ theme }) => theme.accent2};
-  color: ${({ theme }) => theme.accent1};
+  color: ${({ theme }) => theme.white};
   font-size: 20px;
   font-weight: 535;
 

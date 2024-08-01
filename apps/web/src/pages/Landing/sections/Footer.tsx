@@ -99,9 +99,9 @@ export function Footer() {
               <StyledInternalLink to="/swap">
                 <Trans i18nKey="common.swap" />
               </StyledInternalLink>
-              <StyledInternalLink to="/tokens/ethereum">
+              {/* <StyledInternalLink to="/tokens/ethereum">
                 <Trans i18nKey="common.tokens" />
-              </StyledInternalLink>
+              </StyledInternalLink> */}
             </Box>
             <Box direction="column" gap="10px">
               <Body1>

@@ -65,7 +65,7 @@ export function TokenCloud({ transition }: { transition?: boolean }) {
         symbol: 'XCube',
         url: 'https://xcube.club',
         color: '#2775CA',
-        description: 'Best NFT collection ever',
+        description: 'Utility NFT collection',
         logoUrl: 'https://pbs.twimg.com/profile_images/1750420558318329856/bf-LoyZr_400x400.jpg',
       },
     ]
