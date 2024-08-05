@@ -71,7 +71,7 @@ export const useTabsContent = (): TabsSection[] => {
         },
         {
           title: t('common.products'),
-          href: 'https://www.google.com/',
+          href: 'https://keytrust.one/',
           isActive: pathname.startsWith('/explore') || pathname.startsWith('/nfts'),
           target: '_blank',
           internal: false,
