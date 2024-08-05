@@ -8,7 +8,7 @@ export function XcubeCard() {
     <ValuePropCard
       height="250px"
       minHeight="250px"
-      to="https://www.google.com/"
+      to="https://xcube.club/"
       button={<PillButton label={t('common.xcube')} icon={<Xcube />} />}
       titleText={t('common.casino.description')}
     />

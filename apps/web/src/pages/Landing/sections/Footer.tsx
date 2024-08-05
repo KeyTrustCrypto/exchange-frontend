@@ -64,12 +64,12 @@ export function Socials({ iconSize }: { iconSize?: string }) {
   return (
     <Row gap="24px" maxHeight={iconSize} align="flex-start">
       <SocialIcon $hoverColor="#20BAFF">
-        <StyledExternalLink href="https://twitter.com">
+        <StyledExternalLink href="https://twitter.com/keytrust_one">
           <Twitter size={iconSize} fill="inherit" />
         </StyledExternalLink>
       </SocialIcon>
       <SocialIcon $hoverColor="#20BAFF">
-        <StyledExternalLink href="https://t.me">
+        <StyledExternalLink href="https://t.me/keytrust_one">
           <Telegram size={iconSize} fill="inherit" />
         </StyledExternalLink>
       </SocialIcon>

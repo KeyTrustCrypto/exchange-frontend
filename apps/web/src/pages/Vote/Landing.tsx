@@ -184,7 +184,7 @@ export default function Landing() {
                       color: theme.white,
                       textDecoration: 'underline',
                     }}
-                    href="https://uniswap.org/blog/uni"
+                    href="https://medium.com/@keytrust_one"
                     target="_blank"
                   >
                     <ThemedText.DeprecatedWhite fontSize={14}>

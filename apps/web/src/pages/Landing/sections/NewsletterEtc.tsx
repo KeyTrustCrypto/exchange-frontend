@@ -110,7 +110,7 @@ export function NewsletterEtc() {
             <SquareLinkCard
               initial="initial"
               whileHover="hover"
-              href="https://t.me/keytrust_support"
+              href="https://medium.com/@keytrust_one"
               target="_blank"
               rel="noopener noreferrer"
               backgroundColor={opacify(5, theme.white)}
@@ -123,11 +123,11 @@ export function NewsletterEtc() {
             <SquareCard backgroundColor={opacify(5, theme.white)} initial="initial" whileHover="hover">
               <PillButton icon={<Token />} label={t('common.followUs')} />
               <H3>
-                <Link href="https://t.me/keytrust_one" target="_blank">
+                <Link href="https://t.me/keytrust_one" target="_blank" style={{ textDecoration: 'underline' }}>
                   Telegram
                 </Link>{' '}
                 and{' '}
-                <Link href="https://x.com/keytrust_one" target="_blank">
+                <Link href="https://x.com/keytrust_one" target="_blank" style={{ textDecoration: 'underline' }}>
                   X.com
                 </Link>
               </H3>

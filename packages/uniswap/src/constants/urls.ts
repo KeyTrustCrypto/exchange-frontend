@@ -18,7 +18,7 @@ export const UNISWAP_WEB_HOSTNAME = 'app.uniswap.org'
 export const UNISWAP_WEB_URL = `https://${UNISWAP_WEB_HOSTNAME}`
 export const UNISWAP_APP_URL = 'https://uniswap.org/app'
 
-const helpUrl = 'https://google.com'
+const helpUrl = 'https://medium.com/@keytrust_one'
 
 export const uniswapUrls = {
   // Help and web articles/items
