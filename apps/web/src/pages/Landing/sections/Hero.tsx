@@ -126,7 +126,7 @@ export function Hero({ scrollToRef, transition }: HeroProps) {
   }
 
   const handleTelegram = () => {
-    window.open('https://t.me', '_blank')
+    window.open('https://t.me/KeyTrustBot', '_blank')
   }
 
   return (

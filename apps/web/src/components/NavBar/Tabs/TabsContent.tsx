@@ -93,7 +93,7 @@ export const useTabsContent = (): TabsSection[] => {
             {
               label: t('common.xcube'),
               quickKey: t`X`,
-              href: 'https://www.google.com/',
+              href: 'https://xcube.club/',
               target: '_blank',
               internal: false,
             },

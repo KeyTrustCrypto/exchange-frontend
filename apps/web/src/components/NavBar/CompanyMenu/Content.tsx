@@ -25,7 +25,7 @@ export const useMenuContent = (): MenuSection[] => {
     title: t('common.app'),
     key: 'App',
     items: [
-      { label: t('common.vote'), href: 'https://vote.uniswapfoundation.org/' },
+      { label: t('common.vote'), href: 'https://google.com/' },
       { label: t('common.analytics'), href: '/explore', internal: true },
     ],
   }
@@ -33,14 +33,14 @@ export const useMenuContent = (): MenuSection[] => {
   const protocolLinks = {
     title: t('common.ecosystem'),
     key: 'Protocol',
-    items: [{ label: t('common.developers'), href: 'https://www.google.com/' }],
+    items: [{ label: t('common.developers'), href: 'https://gitbook.keytrust.one' }],
   }
   const helpLinks = {
     title: t('common.needHelp'),
     key: 'Help',
     items: [
-      { label: t('common.helpCenter'), href: 'https://google.com' },
-      { label: t('common.contactUs.button'), href: 'https://google.com' },
+      { label: t('common.helpCenter'), href: 'https://t.me/keytrust_support' },
+      { label: t('common.contactUs.button'), href: 'https://t.me/keytrust_support' },
     ],
   }
 
