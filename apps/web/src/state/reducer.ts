@@ -17,7 +17,7 @@ import signatures from 'state/signatures/reducer'
 import transactions from 'state/transactions/reducer'
 import user from 'state/user/reducer'
 import wallets from 'state/wallets/reducer'
-import { fiatOnRampAggregatorApi } from 'uniswap/src/features/fiatOnRamp/api'
+import { fiatOnRampAggregatorApi, fiatOnRampApiChangelly } from 'uniswap/src/features/fiatOnRamp/api'
 import { isDevEnv } from 'utilities/src/environment'
 
 const persistedReducers = {
@@ -40,6 +40,7 @@ const appReducer = combineReducers({
   [routingApi.reducerPath]: routingApi.reducer,
   [quickRouteApi.reducerPath]: quickRouteApi.reducer,
   [fiatOnRampAggregatorApi.reducerPath]: fiatOnRampAggregatorApi.reducer,
+  [fiatOnRampApiChangelly.reducerPath]: fiatOnRampApiChangelly.reducer,
   ...persistedReducers,
 })
 

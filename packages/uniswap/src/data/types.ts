@@ -5,3 +5,9 @@ export type GqlResult<T> = Pick<QueryResult<T>, 'data' | 'loading' | 'error'> &
   Partial<Pick<QueryResult<T>, 'networkStatus'>> & {
     refetch?: () => void // TODO: [MOB-222] figure out the proper type for this from a QueryResult
   }
+
+
+export type AuthData = {
+  'x-api-key': string
+  'x-api-signature': string
+}

@@ -182,3 +182,101 @@ export type FiatCurrencyInfo = {
   shortName: string
   code: string
 } & FiatCurrencyComponents
+
+// CHANGELLY
+
+export enum ChangellyEventName {
+  CHANGELLY_GEOCHECK_COMPLETED = "Changelly Geocheck Completed",
+  CHANGELLY_TRANSACTION_CREATED = "Changelly Transaction Created",
+  CHANGELLY_TRANSACTION_FAILED = "Changelly Transaction Failed",
+  CHANGELLY_TRANSACTION_UPDATED = "Changelly Transaction Updated"
+}
+
+type PaymentMethodOffer = {
+  amountExpectedTo: string;
+  method: string;
+  methodName: string;
+  rate: string;
+  invertedRate: string;
+  fee: string;
+}
+
+export type ChangellyCountryAvailableData = {
+  providerCode: string;
+  rate: string;
+  invertedRate: string;
+  fee: string;
+  amountFrom: string;
+  amountExpectedTo: string;
+  paymentMethodOffers: PaymentMethodOffer[];
+}
+
+export type ChangellyCountryAvailableResponse = ChangellyCountryAvailableData[]
+
+export type ChangellyCurrency = {
+  ticker: string;
+  name: string;
+  type: string;
+  extraIdName: string | null;
+  iconUrl: string;
+  precision: string;
+}
+export type ChangellyListCurrenciesResponse = ChangellyCurrency[]
+
+interface ChangellyOffer {
+  providerCode: string;
+  rate: string;
+  invertedRate: string;
+  fee: string;
+  amountFrom: string;
+  amountExpectedTo: string;
+  paymentMethodOffers: PaymentMethodOffer[];
+}
+
+export type ChangellyOffersResponse = ChangellyOffer[]
+
+export type CreateOrderResponse = {
+  redirectUrl: string;
+  orderId: string;
+  externalUserId: string;
+  externalOrderId: string;
+  providerCode: string;
+  currencyFrom: string;
+  currencyTo: string;
+  amountFrom: string;
+  country: string;
+  state: string | null;
+  ip: string | null;
+  walletAddress: string;
+  walletExtraId: string | null;
+  paymentMethod: string;
+  userAgent: string | null;
+  metadata: any | null;
+  createdAt: string;
+}
+
+export enum ProviderCode {
+  MOONPAY = 'moonpay',
+  BANXA = 'banxa',
+  WERT = 'wert',
+  SIMPLEX = 'simplex',
+  TRANSAK = 'transak',
+  SWITCHERE = 'switchere'
+}
+
+export type CreateOrderRequest = {
+  externalOrderId: string; // Order ID provided by you
+  externalUserId: string;  // User ID provided by you
+  providerCode: ProviderCode
+  currencyFrom: string;    // Ticker of the pay-in currency in uppercase
+  currencyTo: string;      // Ticker of the payout currency in uppercase
+  amountFrom: string;      // Amount of currency the user is going to pay
+  country: string;         // Country ISO 3166-1 code (Alpha-2)
+  state?: string;          // State ISO 3166-2 code, required if country is US
+  ip?: string;             // User's IP address
+  walletAddress: string;   // Recipient wallet address
+  walletExtraId?: string;  // Required for wallet addresses of certain currencies
+  paymentMethod?: 'card' | 'IDEAL' | 'gbp_bank_transfer' | 'sepa_bank_transfer' | 'apple_pay' | 'yellow_card_bank_transfer' | 'pix' | 'pay_id' | 'pay_pal'; // Payment method code
+  userAgent?: string;      // User Agent
+  metadata?: Record<string, any>;
+}

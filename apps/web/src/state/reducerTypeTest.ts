@@ -26,7 +26,7 @@ import { SerializedPair, SerializedToken, SlippageTolerance } from 'state/user/t
 import { WalletState } from 'state/wallets/reducer'
 import { Wallet } from 'state/wallets/types'
 import { Equals, assert } from 'tsafe'
-import { fiatOnRampAggregatorApi } from 'uniswap/src/features/fiatOnRamp/api'
+import { fiatOnRampAggregatorApi, fiatOnRampApiChangelly } from 'uniswap/src/features/fiatOnRamp/api'
 import { InterfaceChainId } from 'uniswap/src/types/chains'
 
 /**
@@ -64,6 +64,7 @@ type ExpectedAppState = CombinedState<{
   logs: LogsState
   [routingApi.reducerPath]: ReturnType<typeof routingApi.reducer>
   [quickRouteApi.reducerPath]: ReturnType<typeof quickRouteApi.reducer>
+  [fiatOnRampApiChangelly.reducerPath]: ReturnType<typeof fiatOnRampApiChangelly.reducer>,
   [fiatOnRampAggregatorApi.reducerPath]: ReturnType<typeof fiatOnRampAggregatorApi.reducer>
 }>
 

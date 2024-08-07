@@ -18,8 +18,8 @@ import { CloseIcon } from 'theme/components'
 import { Text } from 'ui/src'
 import { UNISWAP_WEB_URL, uniswapUrls } from 'uniswap/src/constants/urls'
 import { FORQuoteItem } from 'uniswap/src/features/fiatOnRamp/FORQuoteItem'
-import { useFiatOnRampAggregatorWidgetQuery } from 'uniswap/src/features/fiatOnRamp/api'
-import { FORQuote, FORServiceProvider } from 'uniswap/src/features/fiatOnRamp/types'
+import { useChangellyOnRampWidgetUrlQuery } from 'uniswap/src/features/fiatOnRamp/api'
+import { FORQuote, FORServiceProvider, ProviderCode } from 'uniswap/src/features/fiatOnRamp/types'
 import { ONE_SECOND_MS } from 'utilities/src/time/time'
 import { useTimeout } from 'utilities/src/time/timing'
 import { v4 as uuid } from 'uuid'
@@ -45,6 +45,26 @@ function ChooseProviderModalContent({ closeModal }: ChooseProviderModal) {
   const [selectedServiceProvider, setSelectedServiceProvider] = useState<FORServiceProvider>()
   const [delayElapsed, setDelayElapsed] = useState(false)
 
+  // const check = {
+  //   externalOrderId: uuid(),
+  //   externalUserId: account.address,
+  //   providerCode: selectedServiceProvider.serviceProvider,
+  //   currencyTo: quoteCurrency.meldCurrencyCode,
+  //   currencyFrom: meldSupportedFiatCurrency.code,
+  //   amountFrom: parseFloat(inputAmount),
+  //   country: selectedCountry.countryCode,
+  //   walletAddress: account.address,
+  // }
+
+  // externalOrderId: uuid(),
+  // externalUserId: account.address,
+  // providerCode: selectedServiceProvider.serviceProvider,
+  // currencyTo: quoteCurrency.meldCurrencyCode,
+  // currencyFrom: meldSupportedFiatCurrency.code,
+  // amountFrom: parseFloat(inputAmount),
+  // country: selectedCountry.countryCode,
+  // walletAddress: account.address,
+
   const widgetQueryParams = useMemo(() => {
     return selectedServiceProvider &&
       quoteCurrency.meldCurrencyCode &&
@@ -53,14 +73,14 @@ function ChooseProviderModalContent({ closeModal }: ChooseProviderModal) {
       account.address &&
       selectedCountry?.countryCode
       ? {
-          serviceProvider: selectedServiceProvider.serviceProvider,
-          countryCode: selectedCountry.countryCode,
-          destinationCurrencyCode: quoteCurrency.meldCurrencyCode,
-          sourceAmount: parseFloat(inputAmount),
-          sourceCurrencyCode: meldSupportedFiatCurrency.code,
-          walletAddress: account.address,
-          externalSessionId: uuid(),
-          redirectUrl: `${UNISWAP_WEB_URL}/buy`,
+          externalOrderId: uuid(),
+          externalUserId: account.address  as `0x${string}`,
+          providerCode: ProviderCode.MOONPAY,
+          currencyTo: quoteCurrency.meldCurrencyCode,
+          currencyFrom: meldSupportedFiatCurrency.code,
+          amountFrom: parseFloat(inputAmount).toString(),
+          country: selectedCountry.countryCode,
+          walletAddress: account.address  as `0x${string}`,
         }
       : skipToken
   }, [
@@ -72,7 +92,9 @@ function ChooseProviderModalContent({ closeModal }: ChooseProviderModal) {
     selectedServiceProvider,
   ])
 
-  const { data: widgetData, error: widgetError } = useFiatOnRampAggregatorWidgetQuery(widgetQueryParams)
+  const { data: widgetData, error: widgetError } = useChangellyOnRampWidgetUrlQuery(widgetQueryParams)
+  // const { data: widgetData, error: widgetError } = useTempFiatOnRampAggregatorWidgetQuery(widgetQueryParams)
+  // const { data: widgetData, error: widgetError } = useFiatOnRampAggregatorWidgetQuery(widgetQueryParams)
   useTimeout(() => {
     if (selectedServiceProvider && !delayElapsed) {
       setDelayElapsed(true)
@@ -85,24 +107,24 @@ function ChooseProviderModalContent({ closeModal }: ChooseProviderModal) {
       account.address &&
       selectedServiceProvider &&
       delayElapsed &&
-      widgetData?.widgetUrl
+      widgetData
     ) {
-      window.open(widgetData.widgetUrl, '_blank')
-      addFiatOnRampTransaction({
-        externalSessionId: widgetQueryParams.externalSessionId,
-        account: account.address,
-        status: FiatOnRampTransactionStatus.INITIATED,
-        forceFetched: false,
-        addedAt: Date.now(),
-        type: FiatOnRampTransactionType.BUY,
-      })
+      window.open(widgetData, '_blank')
+      // addFiatOnRampTransaction({
+      //   externalSessionId: widgetQueryParams.externalSessionId,
+      //   account: account.address,
+      //   status: FiatOnRampTransactionStatus.INITIATED,
+      //   forceFetched: false,
+      //   addedAt: Date.now(),
+      //   type: FiatOnRampTransactionType.BUY,
+      // })
     }
   }, [
     account.address,
     addFiatOnRampTransaction,
     delayElapsed,
     selectedServiceProvider,
-    widgetData?.widgetUrl,
+    widgetData,
     widgetQueryParams,
   ])
 
@@ -164,3 +186,7 @@ export function ChooseProviderModal(props: ChooseProviderModal) {
     </Modal>
   )
 }
+// function useChangellyOnRampWidgetUrlQuery(widgetQueryParams: typeof skipToken | { externalOrderId: string; externalUserId: `0x${string}`; providerCode: string; currencyTo: string; currencyFrom: string; amountFrom: number; country: string; walletAddress: `0x${string}` }): { data: any; error: any } {
+//   throw new Error('Function not implemented.')
+// }
+
