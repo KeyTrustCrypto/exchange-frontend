@@ -92,6 +92,7 @@ function ChooseProviderModalContent({ closeModal }: ChooseProviderModal) {
     selectedServiceProvider,
   ])
 
+  
   const { data: widgetData, error: widgetError } = useChangellyOnRampWidgetUrlQuery(widgetQueryParams)
   // const { data: widgetData, error: widgetError } = useTempFiatOnRampAggregatorWidgetQuery(widgetQueryParams)
   // const { data: widgetData, error: widgetError } = useFiatOnRampAggregatorWidgetQuery(widgetQueryParams)

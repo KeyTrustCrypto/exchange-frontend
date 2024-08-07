@@ -18,6 +18,7 @@ import { useEffect } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import { Text } from 'ui/src/components/text/Text'
+import { createSignedHeaders } from 'uniswap/src/data/utils'
 import { FiatOnRampCountryPicker } from 'uniswap/src/features/fiatOnRamp/FiatOnRampCountryPicker'
 import { SelectTokenButton } from 'uniswap/src/features/fiatOnRamp/SelectTokenButton'
 import { useFiatOnRampAggregatorGetCountryQuery } from 'uniswap/src/features/fiatOnRamp/api'
@@ -57,6 +58,9 @@ type BuyFormProps = {
 function BuyFormInner({ disabled }: BuyFormProps) {
   const { formatNumberOrString } = useFormatter()
   const { symbol: fiatSymbol } = useActiveLocalCurrencyComponents()
+
+  const data = createSignedHeaders()
+  console.log('signature', data)
 
   const { buyFormState, setBuyFormState, derivedBuyFormInfo } = useBuyFormContext()
   const { inputAmount, selectedCountry, quoteCurrency, currencyModalOpen, countryModalOpen, providerModalOpen } =
