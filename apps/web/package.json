@@ -91,6 +91,7 @@
     "@types/array.prototype.flat": "1.2.5",
     "@types/array.prototype.flatmap": "1.2.6",
     "@types/chrome": "0.0.254",
+    "@types/crypto-js": "4.2.2",
     "@types/d3": "7.4.3",
     "@types/jest": "29.5.0",
     "@types/ms": "0.7.31",

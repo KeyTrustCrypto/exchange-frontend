@@ -128,6 +128,11 @@ function useDerivedBuyFormInfo(state: BuyFormState): BuyInfo {
     },
   )
 
+  const filteredQuotes = quotes && quotes.quotes ? {
+    ...quotes,
+    quotes: quotes.quotes.filter(quote => quote.serviceProvider === "MOONPAY")
+  } : undefined
+
   const error = useMemo(() => {
     if (quotesError && isFiatOnRampApiError(quotesError)) {
       if (isInvalidRequestAmountTooLow(quotesError)) {
@@ -156,7 +161,7 @@ function useDerivedBuyFormInfo(state: BuyFormState): BuyInfo {
       meldSupportedFiatCurrency,
       supportedTokens,
       countryOptionsResult,
-      quotes,
+      quotes: filteredQuotes,
       fetchingQuotes,
       error,
     }),
@@ -167,7 +172,7 @@ function useDerivedBuyFormInfo(state: BuyFormState): BuyInfo {
       fetchingQuotes,
       meldSupportedFiatCurrency,
       notAvailableInThisRegion,
-      quotes,
+      filteredQuotes,
       supportedTokens,
     ],
   )

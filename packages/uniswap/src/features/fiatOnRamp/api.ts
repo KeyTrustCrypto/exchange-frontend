@@ -1,8 +1,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { MoonpayEventName } from '@uniswap/analytics-events'
+import { config } from 'uniswap/src/config'
 import { uniswapUrls } from 'uniswap/src/constants/urls'
-import { objectToQueryString } from 'uniswap/src/data/utils'
+import { createSignedHeaders, objectToQueryString, serializeQueryParams } from 'uniswap/src/data/utils'
 import { FOR_API_HEADERS } from 'uniswap/src/features/fiatOnRamp/constants'
 import {
+  ChangellyCountryAvailableResponse,
+  ChangellyListCurrenciesResponse,
+  ChangellyOffersResponse,
+  CreateOrderRequest,
+  CreateOrderResponse,
   FORGetCountryResponse,
   FORQuoteRequest,
   FORQuoteResponse,
@@ -20,6 +27,7 @@ import {
   FORWidgetUrlResponse,
 } from 'uniswap/src/features/fiatOnRamp/types'
 import { transformPaymentMethods } from 'uniswap/src/features/fiatOnRamp/utils'
+import { sendAnalyticsEvent } from '../telemetry/send.native'
 
 export const fiatOnRampAggregatorApi = createApi({
   reducerPath: 'fiatOnRampAggregatorApi-uniswap',
@@ -102,3 +110,131 @@ export const {
   useFiatOnRampAggregatorWidgetQuery,
   useFiatOnRampAggregatorTransferWidgetQuery,
 } = fiatOnRampAggregatorApi
+
+
+export const fiatOnRampApiChangelly = createApi({
+  reducerPath: 'fiatOnRampApiChangelly',
+  baseQuery: fetchBaseQuery({ 
+    baseUrl: config.changellyApiProxyUrl, 
+   }),
+  endpoints: (builder) => ({
+    changellyOnRampCountryAvailable: builder.query<ChangellyCountryAvailableResponse, {
+      providerCode?: string
+      supportedFlow?: string
+    }>({
+      queryFn: ({providerCode, supportedFlow}) =>
+        // TODO: [MOB-223] consider a reverse proxy for privacy reasons
+        fetch(`${config.changellyApiProxyUrl}/v1/available-countries${serializeQueryParams({
+          providerCode,
+          supportedFlow,
+        })}`, createSignedHeaders())
+          .then((response) => response.json())
+          .then((response: ChangellyCountryAvailableResponse) => {
+            // sendAnalyticsEvent(MoonpayEventName.MOONPAY_GEOCHECK_COMPLETED, {
+            //   success: true,
+            //   networkError: false,
+            // })
+            return { data: response }
+          })
+          .catch((e) => {
+            // sendAnalyticsEvent(MoonpayEventName.MOONPAY_GEOCHECK_COMPLETED, {
+            //   success: false,
+            //   networkError: true,
+            // })
+
+            return { data: undefined, error: e }
+          }),
+    }),
+    changellyOnRampSupportedCurrencies: builder.query<
+      ChangellyListCurrenciesResponse,
+      {
+        type?: string
+        providerCode?: string
+        supportedFlow?: string 
+      }
+    >({
+      queryFn: ({ type, providerCode, supportedFlow }) =>
+        fetch(`${config.changellyApiProxyUrl}/v1/currencies?${serializeQueryParams({type, providerCode, supportedFlow})}`, createSignedHeaders())
+          .then((response) => response.json())
+          .then((response: ChangellyListCurrenciesResponse) => {
+            return { data: response }
+          })
+          .catch((e) => {
+            return { data: undefined, error: e }
+          }),
+    }),
+    changellyOnRampBuyQuote: builder.query<
+      ChangellyOffersResponse,
+      {
+        providerCode: string
+        currencyTo: string
+        currencyFrom: string
+        amountFrom: string
+        externalUserId?: string
+        country?: string
+        state?: string
+        ip?: string
+      }
+    >({
+      queryFn: ({ providerCode, currencyTo, currencyFrom, amountFrom, externalUserId, country, state, ip }) =>
+        fetch(
+          `${config.changellyApiProxyUrl}/v1/offers?${serializeQueryParams({
+            providerCode,
+            currencyTo,
+            currencyFrom,
+            amountFrom,
+            externalUserId,
+            country,
+            state,
+            ip
+          })}`,
+        )
+          .then((response) => response.json())
+          .then((response: ChangellyOffersResponse) => {
+            return { data: response }
+          })
+          .catch((e) => {
+            return { data: undefined, error: e }
+          }),
+    }),
+
+    changellyOnRampWidgetUrl: builder.query<string, CreateOrderRequest>({
+      queryFn: async (data) => {
+        try {
+          console.log('request start', data)
+          // const { headers } = createSignedHeaders(data);
+          // console.log('headers', headers)
+          const response = await fetch(`${config.changellyApiProxyUrl}`, {
+            body: JSON.stringify(data),
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              // 'x-api-key': headers['x-api-key'],
+              // 'x-api-signature': headers['x-api-signature'],
+            },
+          });
+          console.log('response text', response)
+
+          if (!response.ok) {
+            const errorText = await response.text();
+            return { error: { status: 'FETCH_ERROR', error: errorText } };
+          }
+
+          const responseData: CreateOrderResponse = await response.json();
+
+          return { data: responseData.redirectUrl as string };
+        } catch (error) {
+          console.log('error fetch', error)
+          return { error: { status: 'FETCH_ERROR', error: String(error) } };
+        }
+      },
+    })
+  })
+})
+
+export const {
+  useChangellyOnRampCountryAvailableQuery,
+  useChangellyOnRampSupportedCurrenciesQuery,
+  useChangellyOnRampWidgetUrlQuery,
+  useChangellyOnRampBuyQuoteQuery,
+} = fiatOnRampApiChangelly

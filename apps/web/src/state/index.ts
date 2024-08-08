@@ -6,7 +6,7 @@ import { sentryEnhancer } from 'state/logging'
 import reducer from 'state/reducer'
 import { quickRouteApi } from 'state/routing/quickRouteSlice'
 import { routingApi } from 'state/routing/slice'
-import { fiatOnRampAggregatorApi } from 'uniswap/src/features/fiatOnRamp/api'
+import { fiatOnRampAggregatorApi, fiatOnRampApiChangelly } from 'uniswap/src/features/fiatOnRamp/api'
 import { isTestEnv } from 'utilities/src/environment'
 
 export function createDefaultStore() {
@@ -40,7 +40,8 @@ export function createDefaultStore() {
       })
         .concat(routingApi.middleware)
         .concat(quickRouteApi.middleware)
-        .concat(fiatOnRampAggregatorApi.middleware),
+        .concat(fiatOnRampAggregatorApi.middleware)
+        .concat(fiatOnRampApiChangelly.middleware),
   })
 }
 

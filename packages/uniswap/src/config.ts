@@ -2,6 +2,9 @@
 import {
   APPSFLYER_API_KEY,
   APPSFLYER_APP_ID,
+  CHANGELLY_API_URL,
+  CHANGELLY_PRIVATE_API_KEY,
+  CHANGELLY_PUBLIC_API_KEY,
   FIREBASE_APP_CHECK_DEBUG_TOKEN,
   INFURA_KEY,
   INFURA_PROJECT_ID,
@@ -29,6 +32,9 @@ export interface Config {
   moonpayApiKey: string
   moonpayApiUrl: string
   moonpayWidgetApiUrl: string
+  changellyApiProxyUrl: string
+  changellyApiPrivateKey: string
+  changellyApiPublicKey: string
   uniswapApiKey: string
   infuraKey: string
   infuraProjectId: string
@@ -61,6 +67,9 @@ const _config: Config = {
   appsflyerAppId: process.env.APPSFLYER_APP_ID || APPSFLYER_APP_ID,
   moonpayApiKey: process.env.REACT_APP_MOONPAY_PUBLISHABLE_KEY || process.env.MOONPAY_API_KEY || MOONPAY_API_KEY,
   moonpayApiUrl: process.env.REACT_APP_MOONPAY_API || process.env.MOONPAY_API_URL || MOONPAY_API_URL,
+  changellyApiProxyUrl: process.env.REACT_APP_CHANGELLY_API || process.env.CHANGELLY_API_URL || CHANGELLY_API_URL,
+  changellyApiPrivateKey: process.env.REACT_APP_CHANGELLY_PRIVATE_API_KEY || process.env.CHANGELLY_PRIVATE_API_KEY || CHANGELLY_PRIVATE_API_KEY,
+  changellyApiPublicKey: process.env.REACT_APP_CHANGELLY_PUBLIC_API_KEY || process.env.CHANGELLY_PUBLIC_API_KEY || CHANGELLY_PUBLIC_API_KEY,
   moonpayWidgetApiUrl: process.env.MOONPAY_WIDGET_API_URL || MOONPAY_WIDGET_API_URL,
   uniswapApiKey: process.env.UNISWAP_API_KEY || UNISWAP_API_KEY,
   infuraKey: process.env.REACT_APP_INFURA_KEY || INFURA_KEY,

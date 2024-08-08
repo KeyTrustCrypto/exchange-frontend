@@ -134,5 +134,6 @@ function getServicePrefix(flow?: TrafficFlows): string {
 }
 
 function getCloudflareApiBaseUrl(flow?: TrafficFlows): string {
-  return `https://${getServicePrefix(flow)}${getCloudflarePrefix(flow)}.gateway.uniswap.org`
+  return `https://for.interface.gateway.uniswap.org`
+  // return `https://${getServicePrefix(flow)}${getCloudflarePrefix(flow)}.gateway.uniswap.org`
 }
