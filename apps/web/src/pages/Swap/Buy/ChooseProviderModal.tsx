@@ -108,9 +108,9 @@ function ChooseProviderModalContent({ closeModal }: ChooseProviderModal) {
       account.address &&
       selectedServiceProvider &&
       delayElapsed &&
-      widgetData
+      widgetData?.redirectUrl
     ) {
-      window.open(widgetData, '_blank')
+      window.open(widgetData.redirectUrl, '_blank')
       // addFiatOnRampTransaction({
       //   externalSessionId: widgetQueryParams.externalSessionId,
       //   account: account.address,
@@ -125,7 +125,7 @@ function ChooseProviderModalContent({ closeModal }: ChooseProviderModal) {
     addFiatOnRampTransaction,
     delayElapsed,
     selectedServiceProvider,
-    widgetData,
+    widgetData?.redirectUrl,
     widgetQueryParams,
   ])
 

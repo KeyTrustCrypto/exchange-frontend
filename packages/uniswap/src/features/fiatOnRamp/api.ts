@@ -198,7 +198,7 @@ export const fiatOnRampApiChangelly = createApi({
           }),
     }),
 
-    changellyOnRampWidgetUrl: builder.query<string, CreateOrderRequest>({
+    changellyOnRampWidgetUrl: builder.query<{ redirectUrl: string }, CreateOrderRequest>({
       queryFn: async (data) => {
         try {
           console.log('request start', data)
@@ -222,7 +222,7 @@ export const fiatOnRampApiChangelly = createApi({
 
           const responseData: CreateOrderResponse = await response.json();
 
-          return { data: responseData.redirectUrl as string };
+          return { data: { redirectUrl: responseData.redirectUrl } };
         } catch (error) {
           console.log('error fetch', error)
           return { error: { status: 'FETCH_ERROR', error: String(error) } };
