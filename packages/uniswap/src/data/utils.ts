@@ -1,4 +1,4 @@
-import * as crypto from 'crypto';
+import CryptoJS from 'crypto-js';
 import { config } from 'uniswap/src/config'
 import { AuthData } from './types';
 
@@ -22,23 +22,14 @@ export function serializeQueryParams(params: Record<string, Parameters<typeof en
 export function createSignedHeaders<T>(
   data?: T,
 ): { headers: AuthData } {
-  const privateKeyObject = crypto.createPrivateKey({
-    key: config.changellyApiPrivateKey,
-    type: 'pkcs1',
-    format: 'pem',
-    encoding: 'base64',
-  });
+  const payload = 'https://fiat-api.changelly.com' + JSON.stringify(data ?? {});
+  const hash = CryptoJS.SHA256(payload);
+  const signature = CryptoJS.enc.Base64.stringify(hash);
 
-  const path = config.changellyApiUrl
-  const payload = path + JSON.stringify(data ?? {});
-  const payloadArrayBuffer = Buffer.from(payload, 'utf-8').buffer;
-  const payloadUint8Array = new Uint8Array(payloadArrayBuffer);
-
-  const signature = crypto.sign('sha256', payloadUint8Array, privateKeyObject).toString('base64');
   const headers = {
     'x-api-key': config.changellyApiPublicKey,
     'x-api-signature': signature,
-  }
-  return { headers }
+  };
+  return { headers };
 }
 

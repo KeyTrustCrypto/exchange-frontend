@@ -59,9 +59,6 @@ function BuyFormInner({ disabled }: BuyFormProps) {
   const { formatNumberOrString } = useFormatter()
   const { symbol: fiatSymbol } = useActiveLocalCurrencyComponents()
 
-  const data = createSignedHeaders()
-  console.log('signature', data)
-
   const { buyFormState, setBuyFormState, derivedBuyFormInfo } = useBuyFormContext()
   const { inputAmount, selectedCountry, quoteCurrency, currencyModalOpen, countryModalOpen, providerModalOpen } =
     buyFormState

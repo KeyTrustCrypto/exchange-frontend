@@ -115,7 +115,7 @@ export const {
 export const fiatOnRampApiChangelly = createApi({
   reducerPath: 'fiatOnRampApiChangelly',
   baseQuery: fetchBaseQuery({ 
-    baseUrl: config.changellyApiUrl, 
+    baseUrl: config.changellyApiProxyUrl, 
    }),
   endpoints: (builder) => ({
     changellyOnRampCountryAvailable: builder.query<ChangellyCountryAvailableResponse, {
@@ -124,7 +124,7 @@ export const fiatOnRampApiChangelly = createApi({
     }>({
       queryFn: ({providerCode, supportedFlow}) =>
         // TODO: [MOB-223] consider a reverse proxy for privacy reasons
-        fetch(`${config.changellyApiUrl}/v1/available-countries${serializeQueryParams({
+        fetch(`${config.changellyApiProxyUrl}/v1/available-countries${serializeQueryParams({
           providerCode,
           supportedFlow,
         })}`, createSignedHeaders())
@@ -154,7 +154,7 @@ export const fiatOnRampApiChangelly = createApi({
       }
     >({
       queryFn: ({ type, providerCode, supportedFlow }) =>
-        fetch(`${config.changellyApiUrl}/v1/currencies?${serializeQueryParams({type, providerCode, supportedFlow})}`, createSignedHeaders())
+        fetch(`${config.changellyApiProxyUrl}/v1/currencies?${serializeQueryParams({type, providerCode, supportedFlow})}`, createSignedHeaders())
           .then((response) => response.json())
           .then((response: ChangellyListCurrenciesResponse) => {
             return { data: response }
@@ -178,7 +178,7 @@ export const fiatOnRampApiChangelly = createApi({
     >({
       queryFn: ({ providerCode, currencyTo, currencyFrom, amountFrom, externalUserId, country, state, ip }) =>
         fetch(
-          `${config.changellyApiUrl}/v1/offers?${serializeQueryParams({
+          `${config.changellyApiProxyUrl}/v1/offers?${serializeQueryParams({
             providerCode,
             currencyTo,
             currencyFrom,
@@ -202,12 +202,16 @@ export const fiatOnRampApiChangelly = createApi({
       queryFn: async (data) => {
         try {
           console.log('request start', data)
-          const { headers } = createSignedHeaders(data);
-          console.log('headers', headers)
-          const response = await fetch(`${config.changellyApiUrl}/v1/orders`, {
+          // const { headers } = createSignedHeaders(data);
+          // console.log('headers', headers)
+          const response = await fetch(`${config.changellyApiProxyUrl}`, {
             body: JSON.stringify(data),
             method: 'POST',
-            headers,
+            headers: {
+              'Content-Type': 'application/json',
+              // 'x-api-key': headers['x-api-key'],
+              // 'x-api-signature': headers['x-api-signature'],
+            },
           });
           console.log('response text', response)
 
