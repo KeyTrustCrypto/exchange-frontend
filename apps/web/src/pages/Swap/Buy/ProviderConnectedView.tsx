@@ -15,26 +15,14 @@ interface ProviderConnectedViewProps {
 }
 
 const Container = styled.button<{ $selected?: boolean; $disabled?: boolean; $highlighted: boolean }>`
-  color: ${({ theme, $selected, $disabled, $highlighted }) => {
-    if ($highlighted) {
-      return theme.neutral1
-    }
-    if ($selected && !$disabled) {
-      return theme.neutral1
-    }
-    return theme.neutral2
-  }};
-  padding: 2px 8px;
+  color: ${({ theme }) => theme.neutral1};
+  padding: 15px 25px;
   height: 28px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme, $highlighted, $selected }) => {
-    if ($highlighted || $selected) {
-      return theme.surface3
-    }
-    return 'unset'
-  }};
+  margin: 10px 0 10px;
+  background-color: ${({ theme }) => theme.surface5};
 `
 
 export function ProviderConnectedView({ closeModal, selectedServiceProvider, url }: ProviderConnectedViewProps) {
