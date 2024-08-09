@@ -96,18 +96,18 @@ function ChooseProviderModalContent({ closeModal }: ChooseProviderModal) {
   const { data: widgetData, error: widgetError } = useChangellyOnRampWidgetUrlQuery(widgetQueryParams)
   // const { data: widgetData, error: widgetError } = useTempFiatOnRampAggregatorWidgetQuery(widgetQueryParams)
   // const { data: widgetData, error: widgetError } = useFiatOnRampAggregatorWidgetQuery(widgetQueryParams)
-  useTimeout(() => {
-    if (selectedServiceProvider && !delayElapsed) {
-      setDelayElapsed(true)
-    }
-  }, 2 * ONE_SECOND_MS)
+  // useTimeout(() => {
+  //   if (selectedServiceProvider && !delayElapsed) {
+  //     setDelayElapsed(true)
+  //   }
+  // }, 2 * ONE_SECOND_MS)
 
   useEffect(() => {
     if (
       widgetQueryParams !== skipToken &&
       account.address &&
       selectedServiceProvider &&
-      delayElapsed &&
+      // delayElapsed &&
       widgetData?.redirectUrl
     ) {
       window.open(widgetData.redirectUrl, '_blank')
@@ -123,7 +123,7 @@ function ChooseProviderModalContent({ closeModal }: ChooseProviderModal) {
   }, [
     account.address,
     addFiatOnRampTransaction,
-    delayElapsed,
+    // delayElapsed,
     selectedServiceProvider,
     widgetData?.redirectUrl,
     widgetQueryParams,
@@ -139,8 +139,8 @@ function ChooseProviderModalContent({ closeModal }: ChooseProviderModal) {
     )
   }
 
-  if (selectedServiceProvider && delayElapsed) {
-    return <ProviderConnectedView closeModal={closeModal} selectedServiceProvider={selectedServiceProvider} />
+  if (selectedServiceProvider && widgetData?.redirectUrl) {
+    return <ProviderConnectedView closeModal={closeModal} selectedServiceProvider={selectedServiceProvider} url={widgetData.redirectUrl}/>
   }
 
   if (selectedServiceProvider) {

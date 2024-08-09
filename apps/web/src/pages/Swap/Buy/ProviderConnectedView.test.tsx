@@ -9,7 +9,7 @@ describe('ProviderConnectedView', () => {
 
     const { container } = render(
       <BuyFormContext.Provider value={mockBuyFormContext}>
-        <ProviderConnectedView closeModal={closeModal} selectedServiceProvider={mockServiceProvider} />
+        <ProviderConnectedView closeModal={closeModal} selectedServiceProvider={mockServiceProvider} url="https://google.com" />
       </BuyFormContext.Provider>,
     )
 

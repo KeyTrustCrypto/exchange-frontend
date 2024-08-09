@@ -124,19 +124,19 @@ function BuyFormInner({ disabled }: BuyFormProps) {
             chevronDirection="down"
             backgroundColor="$surface1"
           />
-          <Row gap="md" justify="center">
-            {PREDEFINED_AMOUNTS.map((amount: number) => (
-              <PredefinedAmount
-                onClick={() => {
-                  setBuyFormState((state) => ({ ...state, inputAmount: amount.toString() }))
-                }}
-                key={amount}
-                amount={amount}
-                currentAmount={inputAmount}
-                disabled={disabled}
-              />
-            ))}
-          </Row>
+            <Row gap="md" justify="center">
+              {PREDEFINED_AMOUNTS.map((amount: number) => (
+                <PredefinedAmount
+                  onClick={() => {
+                    setBuyFormState((state) => ({ ...state, inputAmount: amount.toString() }))
+                  }}
+                  key={amount}
+                  amount={amount}
+                  currentAmount={inputAmount}
+                  disabled={disabled}
+                />
+              ))}
+            </Row>
           {notAvailableInThisRegion && (
             <Text variant="body3" userSelect="none" color="$neutral2" textAlign="center">
               <Trans i18nKey="fiatOnRamp.notAvailable.error" />
